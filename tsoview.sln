@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TDCG", "TDCG\TDCG.csproj", "{30D26679-E876-46FC-B8C0-E55146316C8C}"
 EndProject
@@ -122,6 +122,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TSODeform", "TSODeform\TSOD
 		{30D26679-E876-46FC-B8C0-E55146316C8C} = {30D26679-E876-46FC-B8C0-E55146316C8C}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TSOWeitEd", "TSOWeitEd\TSOWeitEd.csproj", "{78B8414E-E77D-4FC6-A75B-7B492B129A19}"
+	ProjectSection(ProjectDependencies) = postProject
+		{30D26679-E876-46FC-B8C0-E55146316C8C} = {30D26679-E876-46FC-B8C0-E55146316C8C}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TSOBoneEd", "TSOBoneEd\TSOBoneEd.csproj", "{0E13F24D-D2E9-4E63-8569-547A32EF4D7C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{30D26679-E876-46FC-B8C0-E55146316C8C} = {30D26679-E876-46FC-B8C0-E55146316C8C}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -236,8 +246,19 @@ Global
 		{A18D0631-5871-4A2D-A6BD-08198C4E2849}.Debug|x86.Build.0 = Debug|x86
 		{A18D0631-5871-4A2D-A6BD-08198C4E2849}.Release|x86.ActiveCfg = Release|x86
 		{A18D0631-5871-4A2D-A6BD-08198C4E2849}.Release|x86.Build.0 = Release|x86
+		{78B8414E-E77D-4FC6-A75B-7B492B129A19}.Debug|x86.ActiveCfg = Debug|x86
+		{78B8414E-E77D-4FC6-A75B-7B492B129A19}.Debug|x86.Build.0 = Debug|x86
+		{78B8414E-E77D-4FC6-A75B-7B492B129A19}.Release|x86.ActiveCfg = Release|x86
+		{78B8414E-E77D-4FC6-A75B-7B492B129A19}.Release|x86.Build.0 = Release|x86
+		{0E13F24D-D2E9-4E63-8569-547A32EF4D7C}.Debug|x86.ActiveCfg = Debug|x86
+		{0E13F24D-D2E9-4E63-8569-547A32EF4D7C}.Debug|x86.Build.0 = Debug|x86
+		{0E13F24D-D2E9-4E63-8569-547A32EF4D7C}.Release|x86.ActiveCfg = Release|x86
+		{0E13F24D-D2E9-4E63-8569-547A32EF4D7C}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {20269B0F-07B9-4E1F-8165-B79C9ADB4657}
 	EndGlobalSection
 EndGlobal

@@ -516,6 +516,25 @@ public class Figure : IDisposable
     }
 
     /// <summary>
+    /// スキン変形行列の配列を得ます。
+    /// </summary>
+    /// <param name="tso">tso</param>
+    /// <returns>スキン変形行列の配列</returns>
+    public Matrix[] ClipBoneMatrices(TSOFile tso)
+    {
+        Matrix[] clipped_boneMatrices = new Matrix[tso.nodes.Length];
+
+        for (int numPalettes = 0; numPalettes < tso.nodes.Length; numPalettes++)
+        {
+            TSONode tso_node = tso.nodes[numPalettes];
+            TMONode tmo_node;
+            if (nodemap.TryGetValue(tso_node, out tmo_node))
+                clipped_boneMatrices[numPalettes] = tso_node.offset_matrix * tmo_node.combined_matrix;
+        }
+        return clipped_boneMatrices;
+    }
+
+    /// <summary>
     /// 光源方向
     /// </summary>
     public Vector3 LightDirection { get; set; }
