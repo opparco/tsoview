@@ -46,8 +46,9 @@ namespace TDCG
             IntPtr ptr = bitmapData.Scan0;
 
             // Declare an array to hold the bytes of the bitmap.
+            //TODO: negative stride
             int stride = bitmapData.Stride;
-            int height = bitmap.Height;
+            int height = bitmapData.Height;
             int nbyte  = stride * height;
             byte[] bytes = new byte[nbyte];
 

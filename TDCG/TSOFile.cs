@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.ComponentModel;
-using System.Text;
 using System.Runtime.InteropServices;
+using System.Drawing;
+using System.Drawing.Imaging;
 using Microsoft.DirectX;
 using Microsoft.DirectX.Direct3D;
 using TDCG.Extensions;
@@ -930,6 +931,33 @@ namespace TDCG
             bw.Write((uint)0);
 
             bw.Write(data, 0, data.Length);
+        }
+
+        /// <summary>
+        /// PNG形式のテクスチャを書き出します。
+        /// </summary>
+        public void SavePngFile(string dest_file)
+        {
+            Bitmap bmp = new Bitmap(this.width, this.height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+
+            // Lock the bitmap's bits.
+            Rectangle rect = new Rectangle(0, 0, bmp.Width, bmp.Height);
+            BitmapData bmpData = bmp.LockBits(rect, ImageLockMode.ReadOnly, bmp.PixelFormat);
+
+            // Get the address of the first line.
+            IntPtr ptr = bmpData.Scan0;
+
+            byte[] buf = this.data;
+
+            Marshal.Copy(buf, 0, ptr, buf.Length);
+
+            // Unlock the bits.
+            bmp.UnlockBits(bmpData);
+
+            // Flip vertically.
+            bmp.RotateFlip(RotateFlipType.RotateNoneFlipY);
+
+            bmp.Save(dest_file);
         }
 
         /// <summary>

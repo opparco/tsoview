@@ -58,17 +58,20 @@ namespace TSOMaterial
                 string name = tex.Name;
                 string file = tex.FileName.Trim('"');
                 Console.WriteLine(file);
-                using (BinaryWriter bw = new BinaryWriter(File.Create(Path.Combine(dest_path, file))))
+                string dest_file = Path.Combine(dest_path, file);
+                switch (Path.GetExtension(file).ToLower())
                 {
-                    switch (Path.GetExtension(file).ToLower())
-                    {
-                        case ".bmp":
+                    case ".bmp":
+                        using (BinaryWriter bw = new BinaryWriter(File.Create(dest_file)))
                             tex.SaveBMP(bw);
-                            break;
-                        case ".tga":
+                        break;
+                    case ".tga":
+                        using (BinaryWriter bw = new BinaryWriter(File.Create(dest_file)))
                             tex.SaveTGA(bw);
-                            break;
-                    }
+                        break;
+                    default:
+                        tex.SavePngFile(dest_file);
+                        break;
                 }
             }
 
