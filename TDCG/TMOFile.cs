@@ -1272,6 +1272,29 @@ namespace TDCG
             }
         }
 
+        static Vector3 Reciprocal(Vector3 v)
+        {
+            return new Vector3(1 / v.X, 1 / v.Y, 1 / v.Z);
+        }
+
+        static void ScalingLocal(ref Matrix m, Vector3 scaling)
+        {
+            m.M11 *= scaling.X;
+            m.M21 *= scaling.X;
+            m.M31 *= scaling.X;
+            m.M41 *= scaling.X;
+
+            m.M12 *= scaling.Y;
+            m.M22 *= scaling.Y;
+            m.M32 *= scaling.Y;
+            m.M42 *= scaling.Y;
+
+            m.M13 *= scaling.Z;
+            m.M23 *= scaling.Z;
+            m.M33 *= scaling.Z;
+            m.M43 *= scaling.Z;
+        }
+
         /// <summary>
         /// 変形行列。これは 拡大行列 x 回転行列 x 位置行列 です。
         /// </summary>
@@ -1281,7 +1304,13 @@ namespace TDCG
             {
                 if (need_update_transformation)
                 {
-                    transformation_matrix = ScalingMatrix * RotationMatrix * TranslationMatrix;
+                    Matrix m = ScalingMatrix * RotationMatrix;
+                    m.M41 = translation.X;
+                    m.M42 = translation.Y;
+                    m.M43 = translation.Z;
+                    if (parent != null)
+                        ScalingLocal(ref m, Reciprocal(parent.Scaling));
+                    transformation_matrix = m;
                     need_update_transformation = false;
                 }
                 return transformation_matrix;
@@ -1289,8 +1318,11 @@ namespace TDCG
             set
             {
                 transformation_matrix = value;
-                translation = Helper.DecomposeMatrix(ref value, out scaling);
-                rotation = Quaternion.RotationMatrix(value);
+                Matrix m = value;
+                if (parent != null)
+                    ScalingLocal(ref m, parent.Scaling);
+                translation = Helper.DecomposeMatrix(ref m, out scaling);
+                rotation = Quaternion.RotationMatrix(m);
             }
         }
     }
