@@ -13,8 +13,8 @@ namespace TDCG
     /// </summary>
     public class SimpleCamera
     {
-        //角度
-        Vector3 angle;
+        //向き（euler 角）
+        Vector3 rotation_euler;
         
         //回転中心
         Vector3 center;
@@ -38,12 +38,15 @@ namespace TDCG
         float rotZD;
         
         //移動時回転単位（ラジアン）
-        float angleU;
+        //この値はマウス感度に対応する
+        const float angleU = 0.01f;
 
         /// <summary>
-        /// 角度
+        //向き（euler 角）
         /// </summary>
-        public Vector3 Angle { get { return angle; } set { angle = value; } }
+        public Vector3 RotationEuler { get { return rotation_euler; } set { rotation_euler = value; } }
+        [Obsolete("use RotationEuler", true)]
+        public Vector3 Angle { get { return rotation_euler; } set { rotation_euler = value; } }
 
         /// <summary>
         /// 回転中心
@@ -70,7 +73,7 @@ namespace TDCG
         /// </summary>
         public SimpleCamera()
         {
-            angle = Vector3.Empty;
+            rotation_euler = Vector3.Empty;
             center = Vector3.Empty;
             translation = new Vector3(0.0f, 0.0f, +10.0f);
             dirD = Vector3.Empty;
@@ -78,7 +81,6 @@ namespace TDCG
             needUpdate = true;
             view = Matrix.Identity;
             rotZD = 0.0f;
-            angleU = 0.01f;
         }
 
         /// <summary>
@@ -86,9 +88,9 @@ namespace TDCG
         /// </summary>
         public void Reset()
         {
+            rotation_euler = Vector3.Empty;
             center = Vector3.Empty;
             translation = new Vector3(0.0f, 0.0f, +10.0f);
-            angle = Vector3.Empty;
             needUpdate = true;
         }
 
@@ -139,18 +141,21 @@ namespace TDCG
             if (!needUpdate)
                 return;
 
-            angle.Y += angleU * -dirD.X;
-            angle.X += angleU * +dirD.Y;
-            angle.Z += +rotZD;
+            rotation_euler.Y += angleU * -dirD.X;
+            rotation_euler.X += angleU * +dirD.Y;
+            rotation_euler.Z += +rotZD;
             this.translation.Z += zD;
 
-            Matrix m = Matrix.RotationYawPitchRoll(angle.Y, angle.X, angle.Z);
+            Matrix m = Matrix.RotationYawPitchRoll(rotation_euler.Y, rotation_euler.X, rotation_euler.Z);
             m.M41 = center.X;
             m.M42 = center.Y;
             m.M43 = center.Z;
             m.M44 = 1;
 
-            view = Matrix.Invert(m) * Matrix.Translation(-translation);
+            view = Matrix.Invert(m);
+            view.M41 -= translation.X;
+            view.M42 -= translation.Y;
+            view.M43 -= translation.Z;
 
             //差分をリセット
             ResetDefValue();
@@ -206,23 +211,47 @@ namespace TDCG
         }
 
         /// <summary>
-        /// 角度を設定します。
+        /// 向きを設定します。
         /// </summary>
-        /// <param name="angle">角度</param>
-        public void SetAngle(Vector3 angle)
+        /// <param name="rotation_euler">向き（euler 角）</param>
+        public void SetRotationEuler(Vector3 rotation_euler)
         {
-            this.angle = angle;
+            this.rotation_euler = rotation_euler;
             needUpdate = true;
         }
+
         /// <summary>
-        /// 角度を設定します。
+        /// 向きを設定します。
         /// </summary>
         /// <param name="x">X軸回転角</param>
         /// <param name="y">Y軸回転角</param>
         /// <param name="z">Z軸回転角</param>
+        public void SetRotationEuler(float x, float y, float z)
+        {
+            SetRotationEuler(new Vector3(x, y, z));
+        }
+
+        /// <summary>
+        /// 向きを設定します。
+        /// </summary>
+        /// <param name="rotation_euler">向き（euler 角）</param>
+        [Obsolete("use SetRotationEuler", true)]
+        public void SetAngle(Vector3 rotation_euler)
+        {
+            this.rotation_euler = rotation_euler;
+            needUpdate = true;
+        }
+
+        /// <summary>
+        /// 向きを設定します。
+        /// </summary>
+        /// <param name="x">X軸回転角</param>
+        /// <param name="y">Y軸回転角</param>
+        /// <param name="z">Z軸回転角</param>
+        [Obsolete("use SetRotationEuler", true)]
         public void SetAngle(float x, float y, float z)
         {
-            SetAngle(new Vector3(x, y, z));
+            SetRotationEuler(new Vector3(x, y, z));
         }
 
         /// <summary>

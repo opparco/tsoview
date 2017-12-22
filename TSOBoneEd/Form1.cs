@@ -376,42 +376,42 @@ namespace TSOBoneEd
         private void cameraXaxisToolStripMenuItem_Click(object sender, EventArgs e)
         {
             float angle = Geometry.DegreeToRadian(90.0f);
-            viewer.Camera.SetAngle(0.0f, +angle, 0.0f);
+            viewer.Camera.SetRotationEuler(0.0f, +angle, 0.0f);
             Invalidate(false);
         }
 
         private void cameraYaxisToolStripMenuItem_Click(object sender, EventArgs e)
         {
             float angle = Geometry.DegreeToRadian(90.0f);
-            viewer.Camera.SetAngle(-angle, 0.0f, 0.0f);
+            viewer.Camera.SetRotationEuler(-angle, 0.0f, 0.0f);
             Invalidate(false);
         }
 
         private void cameraZaxisToolStripMenuItem_Click(object sender, EventArgs e)
         {
             float angle = Geometry.DegreeToRadian(90.0f);
-            viewer.Camera.SetAngle(0.0f, 0.0f, 0.0f);
+            viewer.Camera.SetRotationEuler(0.0f, 0.0f, 0.0f);
             Invalidate(false);
         }
 
         private void caminvXaxisToolStripMenuItem_Click(object sender, EventArgs e)
         {
             float angle = Geometry.DegreeToRadian(90.0f);
-            viewer.Camera.SetAngle(0.0f, -angle, 0.0f);
+            viewer.Camera.SetRotationEuler(0.0f, -angle, 0.0f);
             Invalidate(false);
         }
 
         private void caminvYaxisToolStripMenuItem_Click(object sender, EventArgs e)
         {
             float angle = Geometry.DegreeToRadian(90.0f);
-            viewer.Camera.SetAngle(+angle, 0.0f, 0.0f);
+            viewer.Camera.SetRotationEuler(+angle, 0.0f, 0.0f);
             Invalidate(false);
         }
 
         private void caminvZaxisToolStripMenuItem_Click(object sender, EventArgs e)
         {
             float angle = Geometry.DegreeToRadian(180.0f);
-            viewer.Camera.SetAngle(0.0f, +angle, 0.0f);
+            viewer.Camera.SetRotationEuler(0.0f, +angle, 0.0f);
             Invalidate(false);
         }
 

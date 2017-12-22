@@ -1242,7 +1242,7 @@ namespace TDCG
                         }
                         camera.Reset();
                         camera.Translation = new Vector3(-factor[0], -factor[1], -factor[2]);
-                        camera.Angle = new Vector3(-factor[5], -factor[4], -factor[6]);
+                        camera.RotationEuler = new Vector3(-factor[5], -factor[4], -factor[6]);
                     };
                     png.Lgta += delegate (Stream dest, int extract_length)
                     {

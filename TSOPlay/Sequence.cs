@@ -104,7 +104,7 @@ namespace TSOPlay
                             float x = Geometry.DegreeToRadian(float.Parse(args[1]));
                             float y = Geometry.DegreeToRadian(float.Parse(args[2]));
                             float z = Geometry.DegreeToRadian(float.Parse(args[3]));
-                            viewer.Camera.SetAngle(x, y, z);
+                            viewer.Camera.SetRotationEuler(x, y, z);
                         }
                         break;
                     case "camfocus":
@@ -145,7 +145,7 @@ namespace TSOPlay
         // 時間指定コマンドの実行.
         public void DoInterval()
         {
-            viewer.Camera.SetAngle(viewer.Camera.Angle + camrotate);
+            viewer.Camera.SetRotationEuler(viewer.Camera.RotationEuler + camrotate);
         }
 
         // プレイリストの消去.
