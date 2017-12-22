@@ -58,19 +58,19 @@ namespace TSOMaterial
                 string name = tex.Name;
                 string file = tex.FileName.Trim('"');
                 Console.WriteLine(file);
-                string dest_file = Path.Combine(dest_path, file);
+                string path = Path.Combine(dest_path, file);
                 switch (Path.GetExtension(file).ToLower())
                 {
                     case ".bmp":
-                        using (BinaryWriter bw = new BinaryWriter(File.Create(dest_file)))
+                        using (BinaryWriter bw = new BinaryWriter(File.Create(path)))
                             tex.SaveBMP(bw);
                         break;
                     case ".tga":
-                        using (BinaryWriter bw = new BinaryWriter(File.Create(dest_file)))
+                        using (BinaryWriter bw = new BinaryWriter(File.Create(path)))
                             tex.SaveTGA(bw);
                         break;
                     default:
-                        tex.SavePngFile(dest_file);
+                        tex.SavePngFile(path);
                         break;
                 }
             }
@@ -110,7 +110,10 @@ namespace TSOMaterial
                 string file = tex.FileName.Trim('"');
                 string path = Path.Combine(dest_path, file);
 
-                path = Path.ChangeExtension(path, ".bmp");
+                path = Path.ChangeExtension(path, ".png");
+
+                if (!File.Exists(path))
+                    path = Path.ChangeExtension(path, ".bmp");
 
                 if (!File.Exists(path))
                     path = Path.ChangeExtension(path, ".tga");
@@ -121,18 +124,7 @@ namespace TSOMaterial
                     continue;
                 }
                 Console.WriteLine(file);
-                using (BinaryReader br = new BinaryReader(File.OpenRead(path)))
-                {
-                    switch (Path.GetExtension(path).ToLower())
-                    {
-                        case ".bmp":
-                            tex.LoadBMP(br);
-                            break;
-                        case ".tga":
-                            tex.LoadTGA(br);
-                            break;
-                    }
-                }
+                tex.Load(path);
             }
 
             foreach (TSOScript scr in tso.scripts)

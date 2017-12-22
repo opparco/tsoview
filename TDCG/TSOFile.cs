@@ -740,14 +740,19 @@ namespace TDCG
         /// </summary>
         public void Load(string source_file)
         {
-            string ext = Path.GetExtension(source_file).ToLower();
-            using (BinaryReader br = new BinaryReader(File.OpenRead(source_file)))
+            switch (Path.GetExtension(source_file).ToLower())
             {
-                if (ext == ".tga")
-                    LoadTGA(br);
-                else
-                if (ext == ".bmp")
-                    LoadBMP(br);
+                case ".bmp":
+                    using (BinaryReader br = new BinaryReader(File.OpenRead(source_file)))
+                        LoadBMP(br);
+                    break;
+                case ".tga":
+                    using (BinaryReader br = new BinaryReader(File.OpenRead(source_file)))
+                        LoadTGA(br);
+                    break;
+                case ".png":
+                    LoadPngFile(source_file);
+                    break;
             }
             this.file = "\"" + Path.GetFileName(source_file) + "\"";
         }
@@ -854,6 +859,47 @@ namespace TDCG
         }
 
         /// <summary>
+        /// PNG形式のテクスチャを読み込みます。
+        /// </summary>
+        public void LoadPngFile(string path)
+        {
+            Bitmap bmp = new Bitmap(path);
+            //TODO: bmp.PixelFormat should be Format32bppArgb
+
+            // Flip vertically.
+            bmp.RotateFlip(RotateFlipType.RotateNoneFlipY);
+
+            // Lock the bitmap's bits.
+            Rectangle rect = new Rectangle(0, 0, bmp.Width, bmp.Height);
+            BitmapData bmpData = bmp.LockBits(rect, ImageLockMode.ReadOnly, bmp.PixelFormat);
+
+            // Get the address of the first line.
+            IntPtr ptr = bmpData.Scan0;
+
+            // Declare an array to hold the bytes of the bitmap.
+            //TODO: negative stride
+            byte[] buf = new byte[bmpData.Stride * bmpData.Height];
+
+            Marshal.Copy(ptr, buf, 0, buf.Length);
+
+            int width = bmpData.Width;
+            int height = bmpData.Height;
+            int depth = bmpData.Stride / bmpData.Width;
+
+            // Unlock the bits.
+            bmp.UnlockBits(bmpData);
+
+            if (depth != 3 && depth != 4)
+                throw new Exception("Invalid depth: " + path);
+
+            this.width = width;
+            this.height = height;
+            this.depth = depth;
+
+            this.data = buf;
+        }
+
+        /// <summary>
         /// テクスチャを読み込みます。
         /// </summary>
         public void Read(BinaryReader reader)
@@ -936,7 +982,7 @@ namespace TDCG
         /// <summary>
         /// PNG形式のテクスチャを書き出します。
         /// </summary>
-        public void SavePngFile(string dest_file)
+        public void SavePngFile(string path)
         {
             Bitmap bmp = new Bitmap(this.width, this.height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
 
@@ -957,7 +1003,7 @@ namespace TDCG
             // Flip vertically.
             bmp.RotateFlip(RotateFlipType.RotateNoneFlipY);
 
-            bmp.Save(dest_file);
+            bmp.Save(path);
         }
 
         /// <summary>
