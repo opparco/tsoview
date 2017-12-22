@@ -11,29 +11,29 @@ using TDCG.Extensions;
 
 namespace TDCG
 {
-    using BYTE  = Byte;
-    using WORD  = UInt16;
+    using BYTE = Byte;
+    using WORD = UInt16;
     using DWORD = UInt32;
-    using LONG  = Int32;
+    using LONG = Int32;
 
-    [StructLayout(LayoutKind.Sequential, Pack=1)]
+    [StructLayout(LayoutKind.Sequential, Pack = 1)]
     struct TARGA_HEADER
     {
-	    public BYTE     id;
-	    public BYTE		colormap;
-	    public BYTE		imagetype;
-	    public WORD		colormaporigin;
-	    public WORD		colormaplength;
-	    public BYTE		colormapdepth;
-	    public WORD		x;
-	    public WORD		y;
-	    public WORD		width;
-	    public WORD		height;
-	    public BYTE		depth;
-	    public BYTE		type;
+        public BYTE id;
+        public BYTE colormap;
+        public BYTE imagetype;
+        public WORD colormaporigin;
+        public WORD colormaplength;
+        public BYTE colormapdepth;
+        public WORD x;
+        public WORD y;
+        public WORD width;
+        public WORD height;
+        public BYTE depth;
+        public BYTE type;
     };
 
-    [StructLayout(LayoutKind.Sequential, Pack=1)]
+    [StructLayout(LayoutKind.Sequential, Pack = 1)]
     struct BITMAPFILEHEADER
     {
         public WORD bfType;
@@ -43,7 +43,7 @@ namespace TDCG
         public DWORD bfOffBits;
     }
 
-    [StructLayout(LayoutKind.Sequential, Pack=1)]
+    [StructLayout(LayoutKind.Sequential, Pack = 1)]
     struct BITMAPINFOHEADER
     {
         //public DWORD      biSize;
@@ -171,10 +171,10 @@ namespace TDCG
 
             Array.Resize(ref bone_indices, bone_indices.Length + 1);
             maxPalettes++;
-            
+
             int end = bone_indices.Length - 1;
             bone_indices[end] = bone_index;
-            
+
             return end;
         }
 
@@ -351,8 +351,8 @@ namespace TDCG
         public void Dispose()
         {
             if (sub_meshes != null)
-            foreach (TSOSubMesh sub_mesh in sub_meshes)
-                sub_mesh.Dispose();
+                foreach (TSOSubMesh sub_mesh in sub_meshes)
+                    sub_mesh.Dispose();
         }
     }
 
@@ -774,7 +774,7 @@ namespace TDCG
             this.width = header.width;
             this.height = header.height;
             this.depth = header.depth / 8;
-            this.data = br.ReadBytes( this.width * this.height * this.depth );
+            this.data = br.ReadBytes(this.width * this.height * this.depth);
         }
 
         /// <summary>
@@ -802,26 +802,26 @@ namespace TDCG
             //Console.WriteLine("biSize {0}", biSize);
 
             buf = br.ReadBytes((int)biSize - 4);
-            bih.biWidth             = BitConverter.ToInt32(buf, 0x00);
-            bih.biHeight            = BitConverter.ToInt32(buf, 0x04);
-            bih.biPlanes            = BitConverter.ToUInt16(buf, 0x08);
-            bih.biBitCount          = BitConverter.ToUInt16(buf, 0x0A);
-            bih.biCompression       = BitConverter.ToUInt32(buf, 0x0C);
-            bih.biSizeImage         = BitConverter.ToUInt32(buf, 0x10);
-            bih.biXPelsPerMeter     = BitConverter.ToInt32(buf, 0x14);
-            bih.biYPelsPerMeter     = BitConverter.ToInt32(buf, 0x18);
-            bih.biClrUsed           = BitConverter.ToUInt32(buf, 0x1C);
-            bih.biClrImportant      = BitConverter.ToUInt32(buf, 0x20);
-            bih.bV5RedMask      = 0x00ff0000;
-            bih.bV5GreenMask    = 0x0000ff00;
-            bih.bV5BlueMask     = 0x000000ff;
-            bih.bV5AlphaMask    = 0;
+            bih.biWidth = BitConverter.ToInt32(buf, 0x00);
+            bih.biHeight = BitConverter.ToInt32(buf, 0x04);
+            bih.biPlanes = BitConverter.ToUInt16(buf, 0x08);
+            bih.biBitCount = BitConverter.ToUInt16(buf, 0x0A);
+            bih.biCompression = BitConverter.ToUInt32(buf, 0x0C);
+            bih.biSizeImage = BitConverter.ToUInt32(buf, 0x10);
+            bih.biXPelsPerMeter = BitConverter.ToInt32(buf, 0x14);
+            bih.biYPelsPerMeter = BitConverter.ToInt32(buf, 0x18);
+            bih.biClrUsed = BitConverter.ToUInt32(buf, 0x1C);
+            bih.biClrImportant = BitConverter.ToUInt32(buf, 0x20);
+            bih.bV5RedMask = 0x00ff0000;
+            bih.bV5GreenMask = 0x0000ff00;
+            bih.bV5BlueMask = 0x000000ff;
+            bih.bV5AlphaMask = 0;
             if (biSize >= 56)
             {
-                bih.bV5RedMask      = BitConverter.ToUInt32(buf, 0x24);
-                bih.bV5GreenMask    = BitConverter.ToUInt32(buf, 0x28);
-                bih.bV5BlueMask     = BitConverter.ToUInt32(buf, 0x2C);
-                bih.bV5AlphaMask    = BitConverter.ToUInt32(buf, 0x30);
+                bih.bV5RedMask = BitConverter.ToUInt32(buf, 0x24);
+                bih.bV5GreenMask = BitConverter.ToUInt32(buf, 0x28);
+                bih.bV5BlueMask = BitConverter.ToUInt32(buf, 0x2C);
+                bih.bV5AlphaMask = BitConverter.ToUInt32(buf, 0x30);
             }
 
             if (bih.biBitCount != 24 && bih.biBitCount != 32)
@@ -830,7 +830,7 @@ namespace TDCG
             this.width = bih.biWidth;
             this.height = bih.biHeight;
             this.depth = bih.biBitCount / 8;
-            buf = br.ReadBytes( this.width * this.height * this.depth );
+            buf = br.ReadBytes(this.width * this.height * this.depth);
 
             if (biSize >= 56)
             {
@@ -862,9 +862,9 @@ namespace TDCG
             this.width = reader.ReadInt32();
             this.height = reader.ReadInt32();
             this.depth = reader.ReadInt32();
-            byte[] buf = reader.ReadBytes( this.width * this.height * this.depth );
+            byte[] buf = reader.ReadBytes(this.width * this.height * this.depth);
 
-            for(int j = 0; j < buf.Length; j += 4)
+            for (int j = 0; j < buf.Length; j += 4)
             {
                 byte tmp = buf[j + 2];
                 buf[j + 2] = buf[j + 0];
@@ -946,7 +946,7 @@ namespace TDCG
             byte[] buf = new byte[this.data.Length];
             Array.Copy(this.data, 0, buf, 0, buf.Length);
 
-            for(int j = 0; j < buf.Length; j += 4)
+            for (int j = 0; j < buf.Length; j += 4)
             {
                 byte tmp = buf[j + 2];
                 buf[j + 2] = buf[j + 0];
@@ -1075,10 +1075,12 @@ namespace TDCG
         /// </summary>
         public Quaternion Rotation
         {
-            get {
+            get
+            {
                 return rotation;
             }
-            set {
+            set
+            {
                 rotation = value;
                 need_update_transformation = true;
             }
@@ -1089,10 +1091,12 @@ namespace TDCG
         /// </summary>
         public Vector3 Translation
         {
-            get {
+            get
+            {
                 return translation;
             }
-            set {
+            set
+            {
                 translation = value;
                 need_update_transformation = true;
             }
@@ -1117,7 +1121,7 @@ namespace TDCG
         /// Id
         /// </summary>
         public int Id { get { return id; } }
-        
+
         /// <summary>
         /// 名称
         /// </summary>
@@ -1207,7 +1211,8 @@ namespace TDCG
         /// </summary>
         public Matrix RotationMatrix
         {
-            get {
+            get
+            {
                 return Matrix.RotationQuaternion(rotation);
             }
         }
@@ -1217,7 +1222,8 @@ namespace TDCG
         /// </summary>
         public Matrix TranslationMatrix
         {
-            get {
+            get
+            {
                 return Matrix.Translation(translation);
             }
         }
@@ -1227,7 +1233,8 @@ namespace TDCG
         /// </summary>
         public Matrix TransformationMatrix
         {
-            get {
+            get
+            {
                 if (need_update_transformation)
                 {
                     transformation_matrix = ScalingMatrix * RotationMatrix * TranslationMatrix;
@@ -1235,7 +1242,8 @@ namespace TDCG
                 }
                 return transformation_matrix;
             }
-            set {
+            set
+            {
                 transformation_matrix = value;
                 translation = Helper.DecomposeMatrix(ref value, out scaling);
                 rotation = Quaternion.RotationMatrix(value);
@@ -1499,8 +1507,8 @@ namespace TDCG
             this.effect = effect;
 
             foreach (TSOMesh mesh in meshes)
-            foreach (TSOSubMesh sub_mesh in mesh.sub_meshes)
-                sub_mesh.WriteBuffer(device);
+                foreach (TSOSubMesh sub_mesh in mesh.sub_meshes)
+                    sub_mesh.WriteBuffer(device);
 
             texmap = new Dictionary<string, TSOTex>();
 
@@ -1552,7 +1560,7 @@ namespace TDCG
                 return;
             current_shader = shader;
 
-            if (! techmap.ContainsKey(shader.technique))
+            if (!techmap.ContainsKey(shader.technique))
             {
                 Console.WriteLine("Error: shader technique not found. " + shader.technique);
                 return;
@@ -1565,19 +1573,19 @@ namespace TDCG
 
                 switch (p.type)
                 {
-                case ShaderParameterType.String:
-                    effect.SetValue(p.name, p.GetString());
-                    break;
-                case ShaderParameterType.Float:
-                case ShaderParameterType.Float3:
-                case ShaderParameterType.Float4:
-                    effect.SetValue(p.name, new float[]{ p.F1, p.F2, p.F3, p.F4 });
-                    break;
-                    /*
-                case ShaderParameter.Type.Texture:
-                    effect.SetValue(p.name, p.GetTexture());
-                    break;
-                    */
+                    case ShaderParameterType.String:
+                        effect.SetValue(p.name, p.GetString());
+                        break;
+                    case ShaderParameterType.Float:
+                    case ShaderParameterType.Float3:
+                    case ShaderParameterType.Float4:
+                        effect.SetValue(p.name, new float[] { p.F1, p.F2, p.F3, p.F4 });
+                        break;
+                        /*
+                    case ShaderParameter.Type.Texture:
+                        effect.SetValue(p.name, p.GetTexture());
+                        break;
+                        */
                 }
             }
             effect.SetValue(handle_LightDir, shader.LightDir);
