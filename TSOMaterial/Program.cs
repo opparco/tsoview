@@ -56,23 +56,10 @@ namespace TSOMaterial
             foreach (TSOTex tex in tso.textures)
             {
                 string name = tex.Name;
-                string file = tex.FileName.Trim('"');
+                string file = Path.ChangeExtension(tex.FileName.Trim('"'), ".png");
                 Console.WriteLine(file);
                 string path = Path.Combine(dest_path, file);
-                switch (Path.GetExtension(file).ToLower())
-                {
-                    case ".bmp":
-                        using (BinaryWriter bw = new BinaryWriter(File.Create(path)))
-                            tex.SaveBMP(bw);
-                        break;
-                    case ".tga":
-                        using (BinaryWriter bw = new BinaryWriter(File.Create(path)))
-                            tex.SaveTGA(bw);
-                        break;
-                    default:
-                        tex.SavePngFile(path);
-                        break;
-                }
+                tex.SavePngFile(path);
             }
 
             foreach (TSOScript scr in tso.scripts)
