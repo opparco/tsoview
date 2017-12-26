@@ -83,16 +83,16 @@ namespace TMOProp3
                 {
                     int y = id_pair[x];
 
-                    Vector3 S0 = tmo_defo.nodes[x].Scaling;
-                    Vector3 S1 = tmo_prop.nodes[x].Scaling;
+                    Vector3 S0 = tmo_prop.nodes[x].Scaling;
+                    Vector3 S1 = tmo_defo.nodes[x].Scaling;
                     Vector3 S2 = tmo.nodes[y].Scaling;
 
-                    Quaternion R0 = tmo_defo.nodes[x].Rotation;
-                    Quaternion R1 = tmo_prop.nodes[x].Rotation;
+                    Quaternion R0 = tmo_prop.nodes[x].Rotation;
+                    Quaternion R1 = tmo_defo.nodes[x].Rotation;
                     Quaternion R2 = tmo.nodes[y].Rotation;
 
-                    Vector3 T0 = tmo_defo.nodes[x].Translation;
-                    Vector3 T1 = tmo_prop.nodes[x].Translation;
+                    Vector3 T0 = tmo_prop.nodes[x].Translation;
+                    Vector3 T1 = tmo_defo.nodes[x].Translation;
                     Vector3 T2 = tmo.nodes[y].Translation;
 
                     // dS = S2 / S1
