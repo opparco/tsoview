@@ -860,8 +860,12 @@ float4	NormalMap_PS( cNormalMapData IN, float4 inUV : TEXCOORD0, float3 inLightT
 float4	cMainPS_BoneCol( cVertexData IN ) : COLOR
 {
 
-	float4	col	=	tex2D( RainbowTex, float2( IN.ZTex.x, 0.5 ) );
-
+	float4 col = float4( 0, 0, 0, 1 );
+	float x = IN.ZTex.x;
+	if (x != 0)
+	{
+		col = tex2D( RainbowTex, float2( x, 0.5 ) );
+	}
 	return	col;
 }
 
