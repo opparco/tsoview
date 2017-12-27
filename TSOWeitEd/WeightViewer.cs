@@ -312,21 +312,41 @@ public class WeightViewer : Viewer
 
     private void DrawSubMeshForWireFrame(Figure fig, TSOFile tso, TSOSubMesh sub_mesh)
     {
-        device.SetRenderState(RenderStates.FillMode, (int)FillMode.WireFrame);
+        device.SetRenderState(RenderStates.FillMode, (int)FillMode.Solid);
         //device.RenderState.VertexBlend = (VertexBlend)(4 - 1);
         device.SetStreamSource(0, sub_mesh.vb, 0, 52);
 
-        tso.SwitchShader(sub_mesh);
+        effect.Technique = "BoneCol";
+        effect.SetValue("PenColor", new Vector4(1, 1, 1, 1));
+        effect.SetValue("RainbowTexture", rainbow_texture);
         effect.SetValue(handle_LocalBoneMats, fig.ClipBoneMatrices(sub_mesh));
+        effect.SetValue(handle_LocalBoneSels, ClipBoneSelections(sub_mesh, selected_node));
 
-        int npass = effect.Begin(0);
-        for (int ipass = 0; ipass < npass; ipass++)
         {
-            effect.BeginPass(ipass);
-            device.DrawPrimitives(PrimitiveType.TriangleStrip, 0, sub_mesh.vertices.Length - 2);
-            effect.EndPass();
+            int npass = effect.Begin(0);
+            for (int ipass = 0; ipass < npass; ipass++)
+            {
+                effect.BeginPass(ipass);
+                device.DrawPrimitives(PrimitiveType.TriangleStrip, 0, sub_mesh.vertices.Length - 2);
+                effect.EndPass();
+            }
+            effect.End();
         }
-        effect.End();
+
+        device.SetRenderState(RenderStates.FillMode, (int)FillMode.WireFrame);
+
+        effect.Technique = "WireCol";
+
+        {
+            int npass = effect.Begin(0);
+            for (int ipass = 0; ipass < npass; ipass++)
+            {
+                effect.BeginPass(ipass);
+                device.DrawPrimitives(PrimitiveType.TriangleStrip, 0, sub_mesh.vertices.Length - 2);
+                effect.EndPass();
+            }
+            effect.End();
+        }
     }
 
     /// <summary>

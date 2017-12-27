@@ -540,6 +540,22 @@ cVertexData	cMainVS_BoneCol( appdata IN )
 	return	OUT;
 }
 
+cVertexData	cMainVS_WireCol( appdata IN )
+{
+	cVertexData	OUT;
+
+	float4	pos;
+	float3	nor;
+
+	calc_skindeform( float4( IN.Position.xyz, 1.0 ), IN.Normal, IN.VWeights, IN.BoneIdxs, pos, nor );
+
+	OUT.Position		=	mul( pos, wvp );
+	OUT.UV				=	IN.UV;
+	OUT.Normal			=	normalize( mul( float4( nor.xyz, 0 ), wld ) );
+	OUT.ZTex			=	float4( 0, 0, 0, 1 );
+	return	OUT;
+}
+
 //tsoview
 cVertexData2	cBoneVS( cVertexData2 IN )
 {
@@ -867,6 +883,12 @@ float4	cMainPS_BoneCol( cVertexData IN ) : COLOR
 		col = tex2D( RainbowTex, float2( x, 0.5 ) );
 	}
 	return	col;
+}
+
+float4	cMainPS_WireCol( cVertexData IN ) : COLOR
+{
+
+	return	IN.ZTex;
 }
 
 //tsoview
@@ -1292,6 +1314,16 @@ technique BoneCol
 		StateBlock			=	(DefaultState);
 		VertexShader		=	compile	vs_3_0	cMainVS_BoneCol();
 		PixelShader			=	compile	ps_3_0	cMainPS_BoneCol();
+	}
+}
+
+technique WireCol
+{
+	pass Main
+	{
+		StateBlock			=	(DefaultState);
+		VertexShader		=	compile	vs_3_0	cMainVS_WireCol();
+		PixelShader			=	compile	ps_3_0	cMainPS_WireCol();
 	}
 }
 
