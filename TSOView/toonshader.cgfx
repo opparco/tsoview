@@ -6,12 +6,12 @@
 **********************************************************/
 
 /*********************************************************
-tsoviewƒZƒ‹ƒtƒVƒƒƒhƒE‘Î‰
+tsoviewã‚»ãƒ«ãƒ•ã‚·ãƒ£ãƒ‰ã‚¦å¯¾å¿œ
 
-ƒZƒ‹ƒtƒVƒƒƒhƒE‚³‚¹‚½‚¢technique‚Ìpass‚Ì
+ã‚»ãƒ«ãƒ•ã‚·ãƒ£ãƒ‰ã‚¦ã•ã›ãŸã„techniqueã®passã®
 
 
-VS‚É
+VSã«
 
 	//tsoview
 	float4x4	m		=	wld;
@@ -19,12 +19,12 @@ VS‚É
 	m					=	mul( m, lightproj );
 	OUT.ZTex			=	mul( pos, m );
 
-OUT‚·‚éData‚ª‘Î‰‚µ‚Ä‚é•K—v‚ ‚è
+OUTã™ã‚‹DataãŒå¯¾å¿œã—ã¦ã‚‹å¿…è¦ã‚ã‚Š
 
-‹t‚ÉAOUT‚·‚éData‚ªZTex‚ğ•K—v‚Æ‚·‚éê‡‚Í
-‚±‚ê‚ğ’Ç‰Á‚µ‚È‚¯‚ê‚Î‚È‚ç‚È‚¢
+é€†ã«ã€OUTã™ã‚‹DataãŒZTexã‚’å¿…è¦ã¨ã™ã‚‹å ´åˆã¯
+ã“ã‚Œã‚’è¿½åŠ ã—ãªã‘ã‚Œã°ãªã‚‰ãªã„
 
-PS‚É
+PSã«
 
 	//tsoview
 	float2	texcoord;
@@ -40,14 +40,14 @@ PS‚É
 		hdotn			=	-1.0;
 	}
 
-VS‚ªZTex‚ğOUT‚µ‚Ä‚é•K—v‚ ‚è
+VSãŒZTexã‚’OUTã—ã¦ã‚‹å¿…è¦ã‚ã‚Š
 
-‘¼‚Ì’Ç‰Á‚ÍƒRƒƒ“ƒgƒAƒEƒg
+ä»–ã®è¿½åŠ ã¯ã‚³ãƒ¡ãƒ³ãƒˆã‚¢ã‚¦ãƒˆ
 //tsoview
-‚ğ’ÇÕ‚Ì‚±‚Æ
+ã‚’è¿½è·¡ã®ã“ã¨
 
-‚ ‚ÆAbias‚Í•s—v
-ŠÖ˜A‚·‚é€–Ú‚Ííœ‚µ‚Ä‚¨‚­‚±‚Æ
+ã‚ã¨ã€biasã¯ä¸è¦
+é–¢é€£ã™ã‚‹é …ç›®ã¯å‰Šé™¤ã—ã¦ãŠãã“ã¨
 
 **********************************************************/
 
@@ -166,25 +166,25 @@ float4 ManColor
 //----------------------------------
 //	un-tweakables
 //----------------------------------
-uniform	float4x4	wld			:	World;// ƒ[ƒ‹ƒh•ÏŠ·s—ñ
+uniform	float4x4	wld			:	World;// ãƒ¯ãƒ¼ãƒ«ãƒ‰å¤‰æ›è¡Œåˆ—
 uniform	float4x4	wv			:	WorldView;
 uniform	float4x4	wvp			:	WorldViewProjection;
-uniform	float4x4	view		:	View;// ƒJƒƒ‰ƒrƒ…[•ÏŠ·s—ñ
-uniform	float4x4	proj		:	Projection;// Ë‰e•ÏŠ·s—ñ
-uniform	float4x4	lv			:	LightView;// ƒ‰ƒCƒgƒrƒ…[•ÏŠ·s—ñ
-uniform	float4x4	lp			:	LightProjection;// ƒ‰ƒCƒgƒrƒ…[Ë‰e•ÏŠ·s—ñ
+uniform	float4x4	view		:	View;// ã‚«ãƒ¡ãƒ©ãƒ“ãƒ¥ãƒ¼å¤‰æ›è¡Œåˆ—
+uniform	float4x4	proj		:	Projection;// å°„å½±å¤‰æ›è¡Œåˆ—
+uniform	float4x4	lv			:	LightView;// ãƒ©ã‚¤ãƒˆãƒ“ãƒ¥ãƒ¼å¤‰æ›è¡Œåˆ—
+uniform	float4x4	lp			:	LightProjection;// ãƒ©ã‚¤ãƒˆãƒ“ãƒ¥ãƒ¼å°„å½±å¤‰æ›è¡Œåˆ—
 uniform	float4x4	wlp			:	WorldLightViewProjection;
 
-//tsoview‚É‚Í‰º‚ğ“K—p
-//uniform	float4x4	lvp			:	LightViewProjection;// ƒ‰ƒCƒgƒrƒ…[•ÏŠ·s—ñ
+//tsoviewæ™‚ã«ã¯ä¸‹ã‚’é©ç”¨
+//uniform	float4x4	lvp			:	LightViewProjection;// ãƒ©ã‚¤ãƒˆãƒ“ãƒ¥ãƒ¼å¤‰æ›è¡Œåˆ—
 
 //tsoview
 uniform	float4x4	lightview	:	View;
 uniform	float4x4	lightproj	:	Projection;
-		float4x4	lvp			:	LightViewProjection;// ƒ‰ƒCƒgƒrƒ…[•ÏŠ·s—ñ
+		float4x4	lvp			:	LightViewProjection;// ãƒ©ã‚¤ãƒˆãƒ“ãƒ¥ãƒ¼å¤‰æ›è¡Œåˆ—
 
 //------------------------------------------------------------------
-//	konoa‚³‚ñ’Ç‰ÁHLSL3.0—pƒeƒNƒXƒ`ƒƒƒtƒBƒ‹ƒ^	‚±‚±‚©‚ç
+//	konoaã•ã‚“è¿½åŠ HLSL3.0ç”¨ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ•ã‚£ãƒ«ã‚¿	ã“ã“ã‹ã‚‰
 //------------------------------------------------------------------
 
 texture	ShadeTex_texture;
@@ -255,7 +255,7 @@ sampler2D	ShadowTex	=	sampler_state
 };
 
 //------------------------------------------------------------------
-//	konoa‚³‚ñ’Ç‰ÁHLSL3.0—pƒeƒNƒXƒ`ƒƒƒtƒBƒ‹ƒ^	‚±‚±‚Ü‚Å
+//	konoaã•ã‚“è¿½åŠ HLSL3.0ç”¨ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ•ã‚£ãƒ«ã‚¿	ã“ã“ã¾ã§
 //------------------------------------------------------------------
 
 const uniform float4x4	LocalBoneMats[16];
@@ -298,7 +298,7 @@ struct cVertexData3
 };
 
 //-----------------------------------------------------------
-//  ƒXƒLƒ“•ÏŒ` (’¸“_^–@ü)
+//  ã‚¹ã‚­ãƒ³å¤‰å½¢ (é ‚ç‚¹ï¼æ³•ç·š)
 //-----------------------------------------------------------
 
 void calc_skindeform( float4 ipos, float3 innor, float4 weights, int4 idxs, out float4 outpos, out float3 outnor )
@@ -330,7 +330,7 @@ void calc_skindeform( float4 ipos, float3 innor, float4 weights, int4 idxs, out 
 }
 
 //-----------------------------------------------------------
-//  ƒXƒLƒ“•ÏŒ` (’¸“_‚Ì‚İ)
+//  ã‚¹ã‚­ãƒ³å¤‰å½¢ (é ‚ç‚¹ã®ã¿)
 //-----------------------------------------------------------
 
 void calc_skindeform_nonorm( float4 inpos, float4 weights, int4 idxs, out float4 outpos )
@@ -345,7 +345,7 @@ void calc_skindeform_nonorm( float4 inpos, float4 weights, int4 idxs, out float4
 }
 
 //-----------------------------------------------------------
-//	20100122	š“®‚­ƒnƒCƒ‰ƒCƒg	‚±‚±‚©‚ç
+//	20100122	â˜…å‹•ããƒã‚¤ãƒ©ã‚¤ãƒˆ	ã“ã“ã‹ã‚‰
 //-----------------------------------------------------------
 
 void calc_skindeform_onorm( float3 innor, float4 weights, float4 idxs, out float3 outnor )
@@ -361,7 +361,7 @@ void calc_skindeform_onorm( float3 innor, float4 weights, float4 idxs, out float
 }
 
 //-----------------------------------------------------------
-//	20100122	š“®‚­ƒnƒCƒ‰ƒCƒg	‚±‚±‚Ü‚Å
+//	20100122	â˜…å‹•ããƒã‚¤ãƒ©ã‚¤ãƒˆ	ã“ã“ã¾ã§
 //-----------------------------------------------------------
 
 //tsoview
@@ -376,7 +376,7 @@ void calc_bonecol( float4 incol, float4 weights, int4 idxs, out float4 outcol )
 }
 
 //-----------------------------------------------------------
-//	20090622	tickness“‡	‚±‚±‚©‚ç
+//	20090622	ticknessçµ±åˆ	ã“ã“ã‹ã‚‰
 //-----------------------------------------------------------
 
 cVertexData2	cInkVS( appdata IN )
@@ -399,7 +399,7 @@ cVertexData2	cInkVS( appdata IN )
 }
 
 //-----------------------------------------------------------
-//	20090622	tickness“‡	‚±‚±‚Ü‚Å
+//	20090622	ticknessçµ±åˆ	ã“ã“ã¾ã§
 //-----------------------------------------------------------
 
 float4	ColRate( float4 ic )
@@ -412,7 +412,7 @@ float4	cInkPS( cVertexData2 IN ) : COLOR
 	return ColRate( PenColor * ColorRate );
 }
 
-cVertexData	cMainVS( appdata IN )	//ƒfƒtƒHƒ‹ƒg’¸“_ƒVƒF[ƒ_
+cVertexData	cMainVS( appdata IN )	//ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆé ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€
 {
 	cVertexData	OUT;
 
@@ -542,23 +542,23 @@ cVertexData3	cShadowMapVS( appdata IN )
 
 	calc_skindeform_nonorm( float4 ( IN.Position.xyz, 1 ), IN.VWeights, IN.BoneIdxs, opos );
 
-	// •’Ê‚É world view projection
+	// æ™®é€šã« world view projection
 	float4x4	mat	=	wld;
 	mat				=	mul( mat, lightview );
 	mat				=	mul( mat, lightproj );
 	OUT.Position	=	mul( opos, mat );
 
-	// ƒeƒNƒXƒ`ƒƒÀ•W‚ğ’¸“_‚É‡‚í‚¹‚é
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™ã‚’é ‚ç‚¹ã«åˆã‚ã›ã‚‹
 	OUT.ShadowMapTex	=	OUT.Position;
 
 	return	OUT;
 }
 
 //-----------------------------------------------------------
-//	20100122	š“®‚­ƒnƒCƒ‰ƒCƒg	‚±‚±‚©‚ç
+//	20100122	â˜…å‹•ããƒã‚¤ãƒ©ã‚¤ãƒˆ	ã“ã“ã‹ã‚‰
 //-----------------------------------------------------------
 
-float4	cMainPS( cVertexData IN ) : COLOR	//ƒfƒtƒHƒ‹ƒgƒsƒNƒZƒ‹ƒVƒF[ƒ_
+float4	cMainPS( cVertexData IN ) : COLOR	//ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€
 {
 	float4	nnormal		=	float4 (normalize (IN.Normal), 0.0);
 	float4	esnormal	=	mul (nnormal, view);
@@ -569,7 +569,7 @@ float4	cMainPS( cVertexData IN ) : COLOR	//ƒfƒtƒHƒ‹ƒgƒsƒNƒZƒ‹ƒVƒF[ƒ_
 	float	ldotn		=	dot (nnormal, -LightDirForced);
 	float	hdotn		=	dot (esnormal, -halfvec);
 
-	//tsoviewƒZƒ‹ƒtƒVƒƒƒhƒE
+	//tsoviewã‚»ãƒ«ãƒ•ã‚·ãƒ£ãƒ‰ã‚¦
 	float2	texcoord;
 
 	texcoord.x			=	( 1.0 + IN.ZTex.x/IN.ZTex.w ) * 0.5;
@@ -598,7 +598,7 @@ float4	cMainPS( cVertexData IN ) : COLOR	//ƒfƒtƒHƒ‹ƒgƒsƒNƒZƒ‹ƒVƒF[ƒ_
 }
 
 //-----------------------------------------------------------
-//	20100122	š“®‚­ƒnƒCƒ‰ƒCƒg	‚±‚±‚Ü‚Å
+//	20100122	â˜…å‹•ããƒã‚¤ãƒ©ã‚¤ãƒˆ	ã“ã“ã¾ã§
 //-----------------------------------------------------------
 
 float4	cMainPS2( cVertexData IN ) : COLOR
@@ -784,17 +784,17 @@ struct cNormalMapData
 	float4	LightTangentDirect	:	TEXCOORD5;
 };
 
-// Ú‹óŠÔs—ñ‚Ì‹ts—ñ‚ğZo
+// æ¥ç©ºé–“è¡Œåˆ—ã®é€†è¡Œåˆ—ã‚’ç®—å‡º
 float4x4	InvTangentMatrix(
 	float3	tangent,
 	float3	binormal,
 	float3	normal	)
 {
 	float4x4 mat	=	{ float4(tangent, 0.0f ), float4(binormal, 0.0f), float4(normal, 0.0f), {0.0f, 0.0f, 0.0f, 1.0f} };
-	return transpose( mat );  // “]’u
+	return transpose( mat );  // è»¢ç½®
 }
 
-// ’¸“_ƒVƒF[ƒ_
+// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€
 cNormalMapData	NormalMap_VS( NormalMapData IN, float4 inpos : POSITION, float3 inTangent : TANGENT, float3 inBinormal : BINORMAL, float3 inNormal : NORMAL,  float4 inUV : TEXCOORD0 )
 {
 	cNormalMapData	OUT		=	(cNormalMapData)0;
@@ -851,10 +851,10 @@ float4	cMainPS_BoneCol( cVertexData IN ) : COLOR
 //tsoview
 float4	cShadowMapPS( float4 ShadowMapTex : TEXCOORD0 ) : COLOR
 {
-	// Z’lZo
+	// Zå€¤ç®—å‡º
 	float	depth		=	ShadowMapTex.z / ShadowMapTex.w;
 
-	// ¸“x‚ğã‚°‚é
+	// ç²¾åº¦ã‚’ä¸Šã’ã‚‹
 	float4	unpacked_depth	=	float4( 0.0, 0.0, 256.0, 256.0 );
 	unpacked_depth.g	=	modf( depth*256.0, unpacked_depth.r );
 	unpacked_depth.b	*=	modf( unpacked_depth.g*256.0, unpacked_depth.g );
@@ -868,7 +868,7 @@ float4 cBonePS( cVertexData2 IN ) : COLOR
 }
 
 //-----------------------------------------------------------------
-//	20120423	šTechniqueStateBlock‚±‚±‚©‚ç
+//	20120423	â˜…TechniqueStateBlockã“ã“ã‹ã‚‰
 //-----------------------------------------------------------------
 stateblock	DefaultState	=	stateblock_state
 {
@@ -943,7 +943,7 @@ stateblock	KAZANState		=	stateblock_state
 };
 
 //-----------------------------------------------------------------
-//	20120423	šTechniqueStateBlock‚±‚±‚Ü‚Å
+//	20120423	â˜…TechniqueStateBlockã“ã“ã¾ã§
 //-----------------------------------------------------------------
 
 technique NormalMap
@@ -1275,11 +1275,11 @@ technique BoneCol
 }
 
 //------------------------------------------------------------------
-//	20090211	kemo‚³‚ñ’Ç‰ÁV‹Ktechnique	‚±‚±‚©‚ç
+//	20090211	kemoã•ã‚“è¿½åŠ æ–°è¦technique	ã“ã“ã‹ã‚‰
 //------------------------------------------------------------------
 
 //-----------------------------------------------------------------
-//	20120423	šTechniqueStateBlock‚±‚±‚©‚ç
+//	20120423	â˜…TechniqueStateBlockã“ã“ã‹ã‚‰
 //-----------------------------------------------------------------
 stateblock	NEGAState		=	stateblock_state
 {
@@ -1322,7 +1322,7 @@ stateblock	GENZANState		=	stateblock_state
 };
 
 //-----------------------------------------------------------------
-//	20120423	šTechniqueStateBlock‚±‚±‚Ü‚Å
+//	20120423	â˜…TechniqueStateBlockã“ã“ã¾ã§
 //-----------------------------------------------------------------
 
 technique NEGA
@@ -1386,11 +1386,11 @@ technique GENZAN_FRONT
 }
 
 //------------------------------------------------------------------
-//	20090211	kemo‚³‚ñ’Ç‰ÁV‹Ktechnique	‚±‚±‚Ü‚Å
+//	20090211	kemoã•ã‚“è¿½åŠ æ–°è¦technique	ã“ã“ã¾ã§
 //------------------------------------------------------------------
 
 //------------------------------------------------------------------
-//	kemo‚³‚ñ’Ç‰Á–¢”­•\technique	ƒRƒƒ“ƒgƒAƒEƒgÏ	‚±‚±‚©‚ç
+//	kemoã•ã‚“è¿½åŠ æœªç™ºè¡¨technique	ã‚³ãƒ¡ãƒ³ãƒˆã‚¢ã‚¦ãƒˆæ¸ˆ	ã“ã“ã‹ã‚‰
 //------------------------------------------------------------------
 
 /*
@@ -1403,7 +1403,7 @@ string UIName			=	"UVRipple";
 	float	UIStep		=	1.0;
 >						=	100.0;
 
-cVertexData cMainVS_UVRPL( appdata IN ) //’Ç‰Á Ripple
+cVertexData cMainVS_UVRPL( appdata IN ) //è¿½åŠ  Ripple
 {
 	cVertexData	OUT;
 
@@ -1443,7 +1443,7 @@ technique RIPPLE
 */
 
 /*
-float4	cMainPS_INV( cVertexData IN ) : COLOR	//ƒAƒ‹ƒtƒ@’l•ÏŠ·ƒeƒNƒXƒ`ƒƒ—pƒsƒNƒZƒ‹ƒVƒF[ƒ_
+float4	cMainPS_INV( cVertexData IN ) : COLOR	//ã‚¢ãƒ«ãƒ•ã‚¡å€¤å¤‰æ›ãƒ†ã‚¯ã‚¹ãƒãƒ£ç”¨ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€
 {
 	float4	texcol			=	tex2D( ColorTex, IN.UV  );
 	float	invtexcolr		=	1 - ( (texcol.g + texcol.b) / 2 );
@@ -1465,11 +1465,11 @@ technique INVTEX_Shadow
 */
 
 //------------------------------------------------------------------
-//	kemo‚³‚ñ’Ç‰Á–¢”­•\technique	ƒRƒƒ“ƒgƒAƒEƒgÏ	‚±‚±‚Ü‚Å
+//	kemoã•ã‚“è¿½åŠ æœªç™ºè¡¨technique	ã‚³ãƒ¡ãƒ³ãƒˆã‚¢ã‚¦ãƒˆæ¸ˆ	ã“ã“ã¾ã§
 //------------------------------------------------------------------
 
 //------------------------------------------------------------------
-//	20090213	kemo‚³‚ñ’Ç‰Átechnique UVƒXƒNƒ[ƒ‹	‚±‚±‚©‚ç
+//	20090213	kemoã•ã‚“è¿½åŠ technique UVã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«	ã“ã“ã‹ã‚‰
 //------------------------------------------------------------------
 
 float	UVScroll
@@ -1481,7 +1481,7 @@ float	UVScroll
 	float	UIStep		=	1.0;
 >						=	100.0;
 
-cVertexData cMainVS_UVSCR2( appdata IN )	//’Ç‰Á	XScroll
+cVertexData cMainVS_UVSCR2( appdata IN )	//è¿½åŠ 	XScroll
 {
 	cVertexData	OUT;
 	float4	pos;
@@ -1521,14 +1521,14 @@ technique SCROLL_KAZAN
 }
 
 //------------------------------------------------------------------
-//	20090213	kemo‚³‚ñ’Ç‰Átechnique UVƒXƒNƒ[ƒ‹	‚±‚±‚Ü‚Å
+//	20090213	kemoã•ã‚“è¿½åŠ technique UVã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«	ã“ã“ã¾ã§
 //------------------------------------------------------------------
 
 //------------------------------------------------------------------
-//	20090219	kemo‚³‚ñ’Ç‰Átechnique ƒXƒNƒ[ƒ‹Œntechnique	‚±‚±‚©‚ç
+//	20090219	kemoã•ã‚“è¿½åŠ technique ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ç³»technique	ã“ã“ã‹ã‚‰
 //------------------------------------------------------------------
 
-//’Ç‰Á	X²•ûŒü‚ÌƒXƒNƒ[ƒ‹‘¬“x
+//è¿½åŠ 	Xè»¸æ–¹å‘ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«é€Ÿåº¦
 float	UVScrollX
 <
 	string UIName		=	"UVScrollX";
@@ -1538,7 +1538,7 @@ float	UVScrollX
 	float UIStep		=	1.0;
 >						=	0.0;
 
-//’Ç‰Á	Y²•ûŒü‚ÌƒXƒNƒ[ƒ‹‘¬“x
+//è¿½åŠ 	Yè»¸æ–¹å‘ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«é€Ÿåº¦
 float	UVScrollY
 <
 	string UIName		=	"UVScrollY";
@@ -1548,7 +1548,7 @@ float	UVScrollY
 	float UIStep		=	1.0;
 >						=	0.0;
 
-//’Ç‰Á	X²•ûŒü‚ÌU•
+//è¿½åŠ 	Xè»¸æ–¹å‘ã®æŒ¯å¹…
 float	UVScrollAmpX
 <
 	string UIName		=	"UVScrollAmpX";
@@ -1558,7 +1558,7 @@ float	UVScrollAmpX
 	float UIStep		=	0.01;
 >						=	1.0;
 
-//’Ç‰Á	Y²•ûŒü‚ÌU•
+//è¿½åŠ 	Yè»¸æ–¹å‘ã®æŒ¯å¹…
 float	UVScrollAmpY
 <
 	string UIName		=	"UVScrollAmpY";
@@ -1568,7 +1568,7 @@ float	UVScrollAmpY
 	float UIStep		=	0.01;
 >						=	1.0;
 
-cVertexData cMainVS_UVSCR3( appdata IN )	//’Ç‰Á	XRepeat
+cVertexData cMainVS_UVSCR3( appdata IN )	//è¿½åŠ 	XRepeat
 {
 	cVertexData	OUT;
 	float4	pos;
@@ -1589,7 +1589,7 @@ cVertexData cMainVS_UVSCR3( appdata IN )	//’Ç‰Á	XRepeat
 	return	OUT;
 }
 
-cVertexData cMainVS_UVSCR4( appdata IN )	//’Ç‰Á	Bound
+cVertexData cMainVS_UVSCR4( appdata IN )	//è¿½åŠ 	Bound
 {
 	cVertexData	OUT;
 	float4	pos;
@@ -1610,7 +1610,7 @@ cVertexData cMainVS_UVSCR4( appdata IN )	//’Ç‰Á	Bound
 	return	OUT;
 }
 
-cVertexData cMainVS_UVSCR5( appdata IN )	//’Ç‰Á	Circle
+cVertexData cMainVS_UVSCR5( appdata IN )	//è¿½åŠ 	Circle
 {
 	cVertexData	OUT;
 	float4	pos;
@@ -1631,7 +1631,7 @@ cVertexData cMainVS_UVSCR5( appdata IN )	//’Ç‰Á	Circle
 	return OUT;
 }
 
-cVertexData cMainVS_UVSCR6( appdata IN )	//’Ç‰Á	Blanco
+cVertexData cMainVS_UVSCR6( appdata IN )	//è¿½åŠ 	Blanco
 {
 	cVertexData	OUT;
 	float4	pos;
@@ -1652,7 +1652,7 @@ cVertexData cMainVS_UVSCR6( appdata IN )	//’Ç‰Á	Blanco
 	return	OUT;
 }
 
-cVertexData cMainVS_UVSCR7( appdata IN )	//’Ç‰Á	Eight
+cVertexData cMainVS_UVSCR7( appdata IN )	//è¿½åŠ 	Eight
 {
 	cVertexData	OUT;
 	float4	pos;
@@ -1673,7 +1673,7 @@ cVertexData cMainVS_UVSCR7( appdata IN )	//’Ç‰Á	Eight
 	return	OUT;
 }
 
-cVertexData cMainVS_UVSCR8( appdata IN ) 	//’Ç‰Á	Wave
+cVertexData cMainVS_UVSCR8( appdata IN ) 	//è¿½åŠ 	Wave
 {
 	cVertexData	OUT;
 	float4	pos;
@@ -1694,7 +1694,7 @@ cVertexData cMainVS_UVSCR8( appdata IN ) 	//’Ç‰Á	Wave
 	return	OUT;
 }
 
-cVertexData cMainVS_UVSCR9( appdata IN )	//’Ç‰Á	XYScroll
+cVertexData cMainVS_UVSCR9( appdata IN )	//è¿½åŠ 	XYScroll
 {
 	cVertexData	OUT;
 	float4	pos;
@@ -1732,7 +1732,7 @@ sampler2D	RotateTex	=	sampler_state
 };
 
 
-float4 cMainPS_UVROT( cVertexData IN ) : COLOR	//UVRotate—pƒsƒNƒZƒ‹ƒVƒF[ƒ_
+float4 cMainPS_UVROT( cVertexData IN ) : COLOR	//UVRotateç”¨ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€
 {
 	float4	nnormal		=	float4 (normalize (IN.Normal), 0.0);
 	float4	esnormal	=	mul (nnormal, view);
@@ -1884,18 +1884,18 @@ technique WAVE_KAZAN
 }
 
 //------------------------------------------------------------------
-//	20090219	kemo‚³‚ñ’Ç‰Átechnique ƒXƒNƒ[ƒ‹Œntechnique	‚±‚±‚Ü‚Å
+//	20090219	kemoã•ã‚“è¿½åŠ technique ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ç³»technique	ã“ã“ã¾ã§
 //------------------------------------------------------------------
 
 //------------------------------------------------------------------
-//	20090220	kemo‚³‚ñ’Ç‰Átechnique "texture ShadeTex" “K—p”ÍˆÍ‚ğ•ÏX	‚±‚±‚©‚ç
+//	20090220	kemoã•ã‚“è¿½åŠ technique "texture ShadeTex" é©ç”¨ç¯„å›²ã‚’å¤‰æ›´	ã“ã“ã‹ã‚‰
 //------------------------------------------------------------------
 
 //-----------------------------------------------------------
-//	20100122	š“®‚­ƒnƒCƒ‰ƒCƒg	‚±‚±‚©‚ç
+//	20100122	â˜…å‹•ããƒã‚¤ãƒ©ã‚¤ãƒˆ	ã“ã“ã‹ã‚‰
 //-----------------------------------------------------------
 
-float4 cMainPS3( cVertexData IN ) : COLOR//ShadeTex“K—p”ÍˆÍ•ÏXƒsƒNƒZƒ‹ƒVƒF[ƒ_
+float4 cMainPS3( cVertexData IN ) : COLOR//ShadeTexé©ç”¨ç¯„å›²å¤‰æ›´ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€
 {
 	float4	nnormal		=	float4 (normalize (IN.Normal), 0.0);
 	float4	esnormal	=	mul (nnormal, view);
@@ -1936,7 +1936,7 @@ float4 cMainPS3( cVertexData IN ) : COLOR//ShadeTex“K—p”ÍˆÍ•ÏXƒsƒNƒZƒ‹ƒVƒF[ƒ_
 }
 
 //-----------------------------------------------------------
-//	20100122	š“®‚­ƒnƒCƒ‰ƒCƒg	‚±‚±‚Ü‚Å
+//	20100122	â˜…å‹•ããƒã‚¤ãƒ©ã‚¤ãƒˆ	ã“ã“ã¾ã§
 //-----------------------------------------------------------
 
 technique AllAmb_ShadowOff
@@ -1984,11 +1984,11 @@ technique AllAmb_ShadowOn_InkOff
 }
 
 //------------------------------------------------------------------
-//	20090220	kemo‚³‚ñ’Ç‰Átechnique "texture ShadeTex" “K—p”ÍˆÍ‚ğ•ÏX	‚±‚±‚Ü‚Å
+//	20090220	kemoã•ã‚“è¿½åŠ technique "texture ShadeTex" é©ç”¨ç¯„å›²ã‚’å¤‰æ›´	ã“ã“ã¾ã§
 //------------------------------------------------------------------
 
 //------------------------------------------------------------------
-//	20090307	kemo‚³‚ñ’Ç‰Átechnique ”½ËŒõƒnƒCƒ‰ƒCƒg	‚±‚±‚©‚ç
+//	20090307	kemoã•ã‚“è¿½åŠ technique åå°„å…‰ãƒã‚¤ãƒ©ã‚¤ãƒˆ	ã“ã“ã‹ã‚‰
 //------------------------------------------------------------------
 
 float4	FrontLight		: Diffuse
@@ -2023,9 +2023,9 @@ float	BackLightPower
 
 struct HLMapData
 {
-	float4	Position	:	POSITION; // Ë‰e•ÏŠ·À•W
-	float4	ZUV			:	TEXCOORD0; // Z’lZo—pƒeƒNƒXƒ`ƒƒ
-	float4	HLColor		:	COLOR0; // ƒfƒBƒtƒ…[ƒYF
+	float4	Position	:	POSITION; // å°„å½±å¤‰æ›åº§æ¨™
+	float4	ZUV			:	TEXCOORD0; // Zå€¤ç®—å‡ºç”¨ãƒ†ã‚¯ã‚¹ãƒãƒ£
+	float4	HLColor		:	COLOR0; // ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºè‰²
 	float4	Tangent		:	TEXCOORD1;
 	float4	Binormal	:	TEXCOORD2;
 	float4	Normal		:	NORMAL;
@@ -2036,11 +2036,11 @@ struct HLMapData
 struct cHLMapData
 {
 	float4	Position	:	POSITION;
-	float4	ZUV			:	TEXCOORD0; // Z’lZo—pƒeƒNƒXƒ`ƒƒ
-	float4	HLColor		:	COLOR0; // ƒfƒBƒtƒ…[ƒYF
+	float4	ZUV			:	TEXCOORD0; // Zå€¤ç®—å‡ºç”¨ãƒ†ã‚¯ã‚¹ãƒãƒ£
+	float4	HLColor		:	COLOR0; // ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºè‰²
 };
 
-cHLMapData	cHLMapVSB( HLMapData IN )	//”½ËŒõƒnƒCƒ‰ƒCƒgŒã’¸“_ƒVƒF[ƒ_
+cHLMapData	cHLMapVSB( HLMapData IN )	//åå°„å…‰ãƒã‚¤ãƒ©ã‚¤ãƒˆå¾Œé ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€
 {
 	cHLMapData	OUT;
 	float4	pos;
@@ -2059,7 +2059,7 @@ cHLMapData	cHLMapVSB( HLMapData IN )	//”½ËŒõƒnƒCƒ‰ƒCƒgŒã’¸“_ƒVƒF[ƒ_
 	return	OUT;
 }
 
-cHLMapData	cHLMapVSF( HLMapData IN )	//”½ËŒõƒnƒCƒ‰ƒCƒg‘O’¸“_ƒVƒF[ƒ_
+cHLMapData	cHLMapVSF( HLMapData IN )	//åå°„å…‰ãƒã‚¤ãƒ©ã‚¤ãƒˆå‰é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€
 {
 	cHLMapData	OUT;
 	float4	pos;
@@ -2078,7 +2078,7 @@ cHLMapData	cHLMapVSF( HLMapData IN )	//”½ËŒõƒnƒCƒ‰ƒCƒg‘O’¸“_ƒVƒF[ƒ_
 	return	OUT;
 }
 
-float4 cHLMapPS( cHLMapData IN )	:	COLOR	//”½ËŒõƒnƒCƒ‰ƒCƒgƒsƒNƒZƒ‹ƒVƒF[ƒ_
+float4 cHLMapPS( cHLMapData IN )	:	COLOR	//åå°„å…‰ãƒã‚¤ãƒ©ã‚¤ãƒˆãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€
 {
 	float ZValue		=	IN.ZUV.z / IN.ZUV.w;
 	float4 HLColor1		=	IN.HLColor;
@@ -2281,11 +2281,11 @@ technique ShadowOn_InkOff_BL
 }
 
 //------------------------------------------------------------------
-//	20090307	kemo‚³‚ñ’Ç‰Átechnique ”½ËŒõƒnƒCƒ‰ƒCƒg	‚±‚±‚Ü‚Å
+//	20090307	kemoã•ã‚“è¿½åŠ technique åå°„å…‰ãƒã‚¤ãƒ©ã‚¤ãƒˆ	ã“ã“ã¾ã§
 //------------------------------------------------------------------
 
 //------------------------------------------------------------------
-//	20090313	kemo‚³‚ñ’Ç‰Átechnique Rotate	‚±‚±‚©‚ç
+//	20090313	kemoã•ã‚“è¿½åŠ technique Rotate	ã“ã“ã‹ã‚‰
 //------------------------------------------------------------------
 
 float	UVRotate
@@ -2306,7 +2306,7 @@ float	UVScale
 	float	UIStep		=	1.0;
 >						=	0.0;
 
-cVertexData	cMainVS_UVROT( appdata IN )	//’Ç‰ÁRotate
+cVertexData	cMainVS_UVROT( appdata IN )	//è¿½åŠ Rotate
 {
 	cVertexData	OUT;
 
@@ -2354,11 +2354,11 @@ technique ROTATE_KAZAN
 }
 
 //------------------------------------------------------------------
-//	20090313	kemo‚³‚ñ’Ç‰Átechnique Rotate	‚±‚±‚Ü‚Å
+//	20090313	kemoã•ã‚“è¿½åŠ technique Rotate	ã“ã“ã¾ã§
 //------------------------------------------------------------------
 
 //------------------------------------------------------------------
-//	20090405	kemo‚³‚ñ’Ç‰Átechnique FLASH	‚±‚±‚©‚ç
+//	20090405	kemoã•ã‚“è¿½åŠ technique FLASH	ã“ã“ã‹ã‚‰
 //------------------------------------------------------------------
 
 float	UVFlash
@@ -2379,7 +2379,7 @@ float	FlashFunc
 	float	UIStep		=	1.0;
 >						=	0.0;
 
-float4 cMainPS_UVFLS( cVertexData IN ) : COLOR	//ƒeƒNƒXƒ`ƒƒ“_–Å—pƒsƒNƒZƒ‹ƒVƒF[ƒ_
+float4 cMainPS_UVFLS( cVertexData IN ) : COLOR	//ãƒ†ã‚¯ã‚¹ãƒãƒ£ç‚¹æ»…ç”¨ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€
 {
 	float4	nnormal		=	float4 (normalize (IN.Normal), 0.0);
 	float4	esnormal		=	mul (nnormal, view);
@@ -2424,11 +2424,11 @@ technique FLASH_KAZAN
 }
 
 //------------------------------------------------------------------
-//	20090405	kemo‚³‚ñ’Ç‰Átechnique FLASH	‚±‚±‚Ü‚Å
+//	20090405	kemoã•ã‚“è¿½åŠ technique FLASH	ã“ã“ã¾ã§
 //------------------------------------------------------------------
 
 //------------------------------------------------------------------
-//	20090408	kemo‚³‚ñ’Ç‰Átechnique CLOCK	‚±‚±‚©‚ç
+//	20090408	kemoã•ã‚“è¿½åŠ technique CLOCK	ã“ã“ã‹ã‚‰
 //------------------------------------------------------------------
 
 float	UVClock
@@ -2439,7 +2439,7 @@ float	UVClock
 	float UIStep		=	1.0;
 >						=	1.0;
 
-cVertexData	cMainVS_UVCLC( appdata IN )	//’Ç‰ÁClock
+cVertexData	cMainVS_UVCLC( appdata IN )	//è¿½åŠ Clock
 {
 	cVertexData	OUT;	
 	float4	pos;
@@ -2484,11 +2484,11 @@ technique CLOCK_KAZAN
 }
 
 //------------------------------------------------------------------
-//	20090408	kemo‚³‚ñ’Ç‰Átechnique CLOCK	‚±‚±‚Ü‚Å
+//	20090408	kemoã•ã‚“è¿½åŠ technique CLOCK	ã“ã“ã¾ã§
 //------------------------------------------------------------------
 
 //-----------------------------------------------------------
-//	20090522	kemo‚³‚ñ’Ç‰ÁFurShader	‚±‚±‚©‚ç
+//	20090522	kemoã•ã‚“è¿½åŠ FurShader	ã“ã“ã‹ã‚‰
 //-----------------------------------------------------------
 
 float	FurCortX
@@ -2527,7 +2527,7 @@ struct cFurShaderData
 };
 
 //------------------------------------------------------------------
-//	konoa‚³‚ñ’Ç‰ÁHLSL3.0—pƒeƒNƒXƒ`ƒƒƒtƒBƒ‹ƒ^“K—pÏ‚İFurTex	‚±‚±‚©‚ç
+//	konoaã•ã‚“è¿½åŠ HLSL3.0ç”¨ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ•ã‚£ãƒ«ã‚¿é©ç”¨æ¸ˆã¿FurTex	ã“ã“ã‹ã‚‰
 //------------------------------------------------------------------
 sampler2D	FurShadeTex	=	sampler_state
 {
@@ -2540,7 +2540,7 @@ sampler2D	FurShadeTex	=	sampler_state
 };
 
 //------------------------------------------------------------------
-//	konoa‚³‚ñ’Ç‰ÁHLSL3.0—pƒeƒNƒXƒ`ƒƒƒtƒBƒ‹ƒ^“K—pÏ‚İFurTex	‚±‚±‚Ü‚Å
+//	konoaã•ã‚“è¿½åŠ HLSL3.0ç”¨ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ•ã‚£ãƒ«ã‚¿é©ç”¨æ¸ˆã¿FurTex	ã“ã“ã¾ã§
 //------------------------------------------------------------------
 
 cFurShaderData	cFurSkinVS(appdata IN)
@@ -2715,11 +2715,11 @@ technique ShadingFur
 }
 
 //-----------------------------------------------------------
-//	20090522	kemo‚³‚ñ’Ç‰ÁFurShader	‚±‚±‚Ü‚Å
+//	20090522	kemoã•ã‚“è¿½åŠ FurShader	ã“ã“ã¾ã§
 //-----------------------------------------------------------
 
 //------------------------------------------------------------------
-//	20090620	’Ç‰Átechnique ‹tŒõƒnƒCƒ‰ƒCƒg	‚±‚±‚©‚ç
+//	20090620	è¿½åŠ technique é€†å…‰ãƒã‚¤ãƒ©ã‚¤ãƒˆ	ã“ã“ã‹ã‚‰
 //------------------------------------------------------------------
 
 struct cBHLData
@@ -2729,7 +2729,7 @@ struct cBHLData
 	float3	Normal		:	TEXCOORD1;
 };
 
-float4 cBHLMainPS( cVertexData IN ) : COLOR //‹tŒõƒnƒCƒ‰ƒCƒgƒsƒNƒZƒ‹ƒVƒF[ƒ_
+float4 cBHLMainPS( cVertexData IN ) : COLOR //é€†å…‰ãƒã‚¤ãƒ©ã‚¤ãƒˆãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€
 {
 	float4	viewNor		=	mul( IN.Normal, wv );
 	float	L2			=	dot( viewNor, float4(0,0,1,0) );
@@ -2792,11 +2792,11 @@ technique AllAmb_ShadowOff_InkOff_BHL
 }
 
 //------------------------------------------------------------------
-//	20090620	’Ç‰Átechnique ‹tŒõƒnƒCƒ‰ƒCƒg	‚±‚±‚Ü‚Å
+//	20090620	è¿½åŠ technique é€†å…‰ãƒã‚¤ãƒ©ã‚¤ãƒˆ	ã“ã“ã¾ã§
 //------------------------------------------------------------------
 
 //------------------------------------------------------------------
-//	20090622	š’Ç‰Átechnique Fur+KAZAN	‚±‚±‚©‚ç
+//	20090622	â˜…è¿½åŠ technique Fur+KAZAN	ã“ã“ã‹ã‚‰
 //------------------------------------------------------------------
 technique ShadingFur_KAZAN
 {
@@ -2866,14 +2866,14 @@ technique ShadingFur_KAZAN
 }
 
 //------------------------------------------------------------------
-//	20090622	š’Ç‰Átechnique Fur+KAZAN	‚±‚±‚Ü‚Å
+//	20090622	â˜…è¿½åŠ technique Fur+KAZAN	ã“ã“ã¾ã§
 //------------------------------------------------------------------
 
 //------------------------------------------------------------------
-//	20090824	š’Ç‰Átechnique ‹tŒõƒnƒCƒ‰ƒCƒg‰—p—ÖŠs‚Ú‚©‚µ	‚±‚±‚©‚ç
+//	20090824	â˜…è¿½åŠ technique é€†å…‰ãƒã‚¤ãƒ©ã‚¤ãƒˆå¿œç”¨è¼ªéƒ­ã¼ã‹ã—	ã“ã“ã‹ã‚‰
 //------------------------------------------------------------------
 
-float4	cMainWashOut( cVertexData IN ) : COLOR //‹tŒõƒnƒCƒ‰ƒCƒg‰—p—ÖŠs‚Ú‚©‚µ—pƒsƒNƒZƒ‹ƒVƒF[ƒ_
+float4	cMainWashOut( cVertexData IN ) : COLOR //é€†å…‰ãƒã‚¤ãƒ©ã‚¤ãƒˆå¿œç”¨è¼ªéƒ­ã¼ã‹ã—ç”¨ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€
 {
 	float4	viewNor		=	mul( IN.Normal, wv );
 	float	L			=	dot( viewNor, float4(0,0,1,0) );
@@ -2978,14 +2978,14 @@ technique WASHOUT_NEGA_FRONT
 }
 
 //------------------------------------------------------------------
-//	20090824	š’Ç‰Átechnique ‹tŒõƒnƒCƒ‰ƒCƒg‰—p—ÖŠs‚Ú‚©‚µ	‚±‚±‚Ü‚Å
+//	20090824	â˜…è¿½åŠ technique é€†å…‰ãƒã‚¤ãƒ©ã‚¤ãƒˆå¿œç”¨è¼ªéƒ­ã¼ã‹ã—	ã“ã“ã¾ã§
 //------------------------------------------------------------------
 
 //-----------------------------------------------------------
-//	ƒ~’Ç‰Á–¢”­•\technique	‚±‚±‚©‚ç
+//	ãƒŸè¿½åŠ æœªç™ºè¡¨technique	ã“ã“ã‹ã‚‰
 //-----------------------------------------------------------
 
-float4 cMainWashoutFlash( cVertexData IN ) : COLOR //‹tŒõƒnƒCƒ‰ƒCƒg‰—p—ÖŠs‚Ú‚©‚µƒeƒNƒXƒ`ƒƒ“_–Å—pƒsƒNƒZƒ‹ƒVƒF[ƒ_
+float4 cMainWashoutFlash( cVertexData IN ) : COLOR //é€†å…‰ãƒã‚¤ãƒ©ã‚¤ãƒˆå¿œç”¨è¼ªéƒ­ã¼ã‹ã—ãƒ†ã‚¯ã‚¹ãƒãƒ£ç‚¹æ»…ç”¨ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€
 {
 	float4	viewNor		=	mul( IN.Normal, wv );
 	float	L			=	dot( viewNor, float4(0,0,1,0) );
@@ -3024,11 +3024,11 @@ technique WASHOUT_KAZAN_FLASH
 }
 
 //-----------------------------------------------------------
-//	ƒ~’Ç‰Á–¢”­•\technique	‚±‚±‚©‚ç
+//	ãƒŸè¿½åŠ æœªç™ºè¡¨technique	ã“ã“ã‹ã‚‰
 //-----------------------------------------------------------
 
 //-----------------------------------------------------------
-//	ƒ~’Ç‰Á–¢”­•\technique	‚±‚±‚©‚ç
+//	ãƒŸè¿½åŠ æœªç™ºè¡¨technique	ã“ã“ã‹ã‚‰
 //-----------------------------------------------------------
 
 float4 cInkPS_TrnsC( cVertexData2 IN ) : COLOR
@@ -3063,11 +3063,11 @@ technique Transparent3
 }
 
 //-----------------------------------------------------------
-//	ƒ~’Ç‰Á–¢”­•\technique	‚±‚±‚Ü‚Å
+//	ãƒŸè¿½åŠ æœªç™ºè¡¨technique	ã“ã“ã¾ã§
 //-----------------------------------------------------------
 
 //------------------------------------------------------------------
-//	20091030	šƒnƒCƒ‰ƒCƒgF•Ï‚¦	‚±‚±‚©‚ç
+//	20091030	â˜…ãƒã‚¤ãƒ©ã‚¤ãƒˆè‰²å¤‰ãˆ	ã“ã“ã‹ã‚‰
 //------------------------------------------------------------------
 
 float4	HighLightColor
@@ -3076,7 +3076,7 @@ float4	HighLightColor
 	string	UIWidget	=	"Color";
 >						=	{ 1.0, 1.0, 1.0, 1.0 };
 
-float4 cMainPS4( cVertexData IN ) : COLOR//ShadeTex“K—p”ÍˆÍ•ÏXƒsƒNƒZƒ‹ƒVƒF[ƒ_
+float4 cMainPS4( cVertexData IN ) : COLOR//ShadeTexé©ç”¨ç¯„å›²å¤‰æ›´ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€
 {
 	float4	nnormal		=	float4 (normalize (IN.Normal), 0.0);
 	float4	esnormal	=	mul (nnormal, view);
@@ -3195,11 +3195,11 @@ technique AllAmb_ShadowOff_InkOff_BHL_HLC
 }
 
 //------------------------------------------------------------------
-//	20091030	šƒnƒCƒ‰ƒCƒgF•Ï‚¦	‚±‚±‚Ü‚Å
+//	20091030	â˜…ãƒã‚¤ãƒ©ã‚¤ãƒˆè‰²å¤‰ãˆ	ã“ã“ã¾ã§
 //------------------------------------------------------------------
 
 //------------------------------------------------------------------
-//	20100120	š’Ç‰Átechnique í‚Éè‘O{	‚±‚±‚©‚ç
+//	20100120	â˜…è¿½åŠ technique å¸¸ã«æ‰‹å‰ï¼‹	ã“ã“ã‹ã‚‰
 //------------------------------------------------------------------
 
 technique ShadowOff_Front
@@ -3452,11 +3452,11 @@ technique AllAmb_ShadowOff_InkOff_BHL_HLC_Front
 }
 
 //------------------------------------------------------------------
-//	20100120	š’Ç‰Átechnique í‚Éè‘O{	‚±‚±‚Ü‚Å
+//	20100120	â˜…è¿½åŠ technique å¸¸ã«æ‰‹å‰ï¼‹	ã“ã“ã¾ã§
 //------------------------------------------------------------------
 
 //------------------------------------------------------------------
-//	20100305	šNATŒnVtechnique’Ç‰Á	‚±‚±‚©‚ç
+//	20100305	â˜…NATç³»æ–°techniqueè¿½åŠ 	ã“ã“ã‹ã‚‰
 //------------------------------------------------------------------
 
 technique NAT_AllAmb_ShadowOff
@@ -4041,11 +4041,11 @@ technique NAT_AllAmb_ShadowOff_InkOff_BHL_HLC_Front
 }
 
 //------------------------------------------------------------------
-//	20100305	šNATŒnVtechnique’Ç‰Á	‚±‚±‚Ü‚Å
+//	20100305	â˜…NATç³»æ–°techniqueè¿½åŠ 	ã“ã“ã¾ã§
 //------------------------------------------------------------------
 
 //-----------------------------------------------------------
-//	20100320	šƒeƒNƒXƒ`ƒƒ‚ğƒAƒ‹ƒtƒ@î•ñ‚Ì‚İ‚Æ‚µ‚Ä‰ğß	‚±‚±‚©‚ç
+//	20100320	â˜…ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ã‚¢ãƒ«ãƒ•ã‚¡æƒ…å ±ã®ã¿ã¨ã—ã¦è§£é‡ˆ	ã“ã“ã‹ã‚‰
 //-----------------------------------------------------------
 
 float4	Tex2AlphaCol	:	Diffuse
@@ -4055,12 +4055,12 @@ float4	Tex2AlphaCol	:	Diffuse
 >						=	{ 0.0f, 0.0f, 0.0f, 1.0f };
 
 
-float4 cTex2AlphaPS( cVertexData IN ) : COLOR//ƒeƒNƒXƒ`ƒƒ‚ğƒAƒ‹ƒtƒ@î•ñ‚Ì‚İ‚Æ‚µ‚Ä‰ğßƒsƒNƒZƒ‹ƒVƒF[ƒ_
+float4 cTex2AlphaPS( cVertexData IN ) : COLOR//ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ã‚¢ãƒ«ãƒ•ã‚¡æƒ…å ±ã®ã¿ã¨ã—ã¦è§£é‡ˆãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€
 {
 	float4  texcol  	=	tex2D( ColorTex, IN.UV  );
 	float texcol2alpha	=	( 1 - max ( texcol.b, ( max ( texcol.r, texcol.g ) ) ) );
 
-	//ƒeƒNƒXƒ`ƒƒ‚ÌƒJƒ‰[‚©‚ç–¾“x‚ğZo
+	//ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚«ãƒ©ãƒ¼ã‹ã‚‰æ˜åº¦ã‚’ç®—å‡º
 	return	ColRate( float4(Tex2AlphaCol.rgb, texcol2alpha) * ColorRate );
 }
 
@@ -4074,14 +4074,14 @@ technique Tex2Alpha
 }
 
 //-----------------------------------------------------------
-//	20100320	šƒeƒNƒXƒ`ƒƒ‚ğƒAƒ‹ƒtƒ@î•ñ‚Ì‚İ‚Æ‚µ‚Ä‰ğß	‚±‚±‚Ü‚Å
+//	20100320	â˜…ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ã‚¢ãƒ«ãƒ•ã‚¡æƒ…å ±ã®ã¿ã¨ã—ã¦è§£é‡ˆ	ã“ã“ã¾ã§
 //-----------------------------------------------------------
 
 //-----------------------------------------------------------
-//	20100607	š’Ç‰Átechnique	KAZAN2	‚±‚±‚©‚ç
+//	20100607	â˜…è¿½åŠ technique	KAZAN2	ã“ã“ã‹ã‚‰
 //-----------------------------------------------------------
 
-//•Ï”’è‹`
+//å¤‰æ•°å®šç¾©
 
 float4	KAZAN2COLOR		:	Diffuse
 <
@@ -4089,7 +4089,7 @@ float4	KAZAN2COLOR		:	Diffuse
 	string	UIWidget	=	"Color";
 >						=	{ 1.0f, 1.0f, 1.0f, 1.0f };
 
-//ƒsƒNƒZƒ‹ƒVƒF[ƒ_
+//ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€
 
 float4	KATAHO_KAZAN( cVertexData IN ) : COLOR
 {
@@ -4115,7 +4115,7 @@ float4	KATAHO_KAZAN_UVROT( cVertexData IN ) : COLOR
 	return	ColRate(lrp2 * ColorRate);
 }
 
-float4	KATAHO_KAZAN_UVFLS( cVertexData IN ) : COLOR //ƒeƒNƒXƒ`ƒƒ“_–Å—pƒsƒNƒZƒ‹ƒVƒF[ƒ_
+float4	KATAHO_KAZAN_UVFLS( cVertexData IN ) : COLOR //ãƒ†ã‚¯ã‚¹ãƒãƒ£ç‚¹æ»…ç”¨ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€
 {
 	float4	t0			=	tex2D( ColorTex, IN.UV  );
 	float4	r0			=	pow(t0,4) + float4(-0.11, -0.11, -0.11, 1.0);
@@ -4129,7 +4129,7 @@ float4	KATAHO_KAZAN_UVFLS( cVertexData IN ) : COLOR //ƒeƒNƒXƒ`ƒƒ“_–Å—pƒsƒNƒZƒ‹ƒV
 	return	ColRate( float4( lrp2.rgb, FlashAlpha )  * ColorRate);
 }
 
-float4	KATAHO_KAZAN_UVROT_UVFLS( cVertexData IN ) : COLOR //ƒeƒNƒXƒ`ƒƒ“_–Å—pƒsƒNƒZƒ‹ƒVƒF[ƒ_
+float4	KATAHO_KAZAN_UVROT_UVFLS( cVertexData IN ) : COLOR //ãƒ†ã‚¯ã‚¹ãƒãƒ£ç‚¹æ»…ç”¨ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€
 {
 	float4	t0			=	tex2D( RotateTex, IN.UV  );
 	float4	r0			=	pow(t0,4) + float4(-0.11, -0.11, -0.11, 1.0);
@@ -4143,7 +4143,7 @@ float4	KATAHO_KAZAN_UVROT_UVFLS( cVertexData IN ) : COLOR //ƒeƒNƒXƒ`ƒƒ“_–Å—pƒsƒN
 	return	ColRate( float4( lrp2.rgb, FlashAlpha )  * ColorRate);
 }
 
-float4	WASHOUT_KATAHO_KAZAN( cVertexData IN ) : COLOR //‹tŒõƒnƒCƒ‰ƒCƒg‰—p—ÖŠs‚Ú‚©‚µ—pƒsƒNƒZƒ‹ƒVƒF[ƒ_
+float4	WASHOUT_KATAHO_KAZAN( cVertexData IN ) : COLOR //é€†å…‰ãƒã‚¤ãƒ©ã‚¤ãƒˆå¿œç”¨è¼ªéƒ­ã¼ã‹ã—ç”¨ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€
 {
 	float4	viewNor		=	mul( IN.Normal, wv );
 	float	L			=	dot( viewNor, float4(0,0,1,0) );
@@ -4160,7 +4160,7 @@ float4	WASHOUT_KATAHO_KAZAN( cVertexData IN ) : COLOR //‹tŒõƒnƒCƒ‰ƒCƒg‰—p—ÖŠs‚Ú
 return	ColRate(float4( lrp2.rgb, lrp2.a * shadecol.a) * ColorRate);
 }
 
-float4	WASHOUT_KATAHO_KAZAN_FLASH( cVertexData IN ) : COLOR //‹tŒõƒnƒCƒ‰ƒCƒg‰—p—ÖŠs‚Ú‚©‚µƒeƒNƒXƒ`ƒƒ“_–Å—pƒsƒNƒZƒ‹ƒVƒF[ƒ_
+float4	WASHOUT_KATAHO_KAZAN_FLASH( cVertexData IN ) : COLOR //é€†å…‰ãƒã‚¤ãƒ©ã‚¤ãƒˆå¿œç”¨è¼ªéƒ­ã¼ã‹ã—ãƒ†ã‚¯ã‚¹ãƒãƒ£ç‚¹æ»…ç”¨ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€
 {
 	float4	viewNor		=	mul( IN.Normal, wv );
 	float	L			=	dot( viewNor, float4(0,0,1,0) );
@@ -4193,7 +4193,7 @@ stateblock	KAZAN2State		=	stateblock_state
 	ZWriteEnable			=	false;
 };
 
-//ƒVƒF[ƒfƒBƒ“ƒOƒeƒNƒjƒbƒN
+//ã‚·ã‚§ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ãƒ†ã‚¯ãƒ‹ãƒƒã‚¯
 
 technique KAZAN2
 {
@@ -4342,22 +4342,22 @@ technique WASHOUT_KAZAN2_FLASH
 }
 
 //-----------------------------------------------------------
-//	20100607	š’Ç‰Átechnique	KAZAN2	‚±‚±‚Ü‚Å
+//	20100607	â˜…è¿½åŠ technique	KAZAN2	ã“ã“ã¾ã§
 //-----------------------------------------------------------
 
 //-----------------------------------------------------------
-//	20100608	š’Ç‰Átechnique	emissive	‚±‚±‚©‚ç
+//	20100608	â˜…è¿½åŠ technique	emissive	ã“ã“ã‹ã‚‰
 //-----------------------------------------------------------
 
-//•Ï”’è‹`
+//å¤‰æ•°å®šç¾©
 float4	Emissive		:	Diffuse
 <
 	string UIName		=	"Emissive";
 	string UIWidget		=	"Color";
 >						=	{ 0.0f, 0.0f, 0.0f, 0.0f };
 
-//ƒsƒNƒZƒ‹ƒVƒF[ƒ_
-float4	cMainPS_emissive( cVertexData IN ) : COLOR//ƒfƒtƒHƒ‹ƒgƒsƒNƒZƒ‹ƒVƒF[ƒ_+emissive
+//ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€
+float4	cMainPS_emissive( cVertexData IN ) : COLOR//ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€+emissive
 {
 	float4	nnormal		=	float4 (normalize (IN.Normal), 0.0);
 	float4	esnormal	=	mul (nnormal, view);
@@ -4382,7 +4382,7 @@ float4	cMainPS_emissive( cVertexData IN ) : COLOR//ƒfƒtƒHƒ‹ƒgƒsƒNƒZƒ‹ƒVƒF[ƒ_+em
 	return	ColRate( float4(col.rgb, texcol.a ) + Emissive );
 }
 
-float4 cMainPS3_emissive( cVertexData IN ) : COLOR//ShadeTex“K—p”ÍˆÍ•ÏXƒsƒNƒZƒ‹ƒVƒF[ƒ_+emissive
+float4 cMainPS3_emissive( cVertexData IN ) : COLOR//ShadeTexé©ç”¨ç¯„å›²å¤‰æ›´ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€+emissive
 {
 	float4	nnormal		=	float4(normalize (IN.Normal), 0.0);
 	float4	esnormal	=	mul(nnormal, view);
@@ -4407,7 +4407,7 @@ float4 cMainPS3_emissive( cVertexData IN ) : COLOR//ShadeTex“K—p”ÍˆÍ•ÏXƒsƒNƒZƒ‹
 	return	ColRate( float4(col.rgb, texcol.a ) + Emissive );
 }
 
-float4	cBHLMainPS_emissive( cVertexData IN ) : COLOR //‹tŒõƒnƒCƒ‰ƒCƒgƒsƒNƒZƒ‹ƒVƒF[ƒ_+emissive
+float4	cBHLMainPS_emissive( cVertexData IN ) : COLOR //é€†å…‰ãƒã‚¤ãƒ©ã‚¤ãƒˆãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€+emissive
 {
 	float4	viewNor		=	mul( IN.Normal, wv );
 	float	L2			=	dot( viewNor, float4(0,0,1,0) );
@@ -4437,7 +4437,7 @@ float4	cBHLMainPS_emissive( cVertexData IN ) : COLOR //‹tŒõƒnƒCƒ‰ƒCƒgƒsƒNƒZƒ‹ƒVƒ
 	return	ColRate( float4(shadecol.rgb, BHLcol.a) + Emissive );
 }
 
-float4	cMainPS_UVROT_emissive( cVertexData IN ) : COLOR //UVRotate—pƒsƒNƒZƒ‹ƒVƒF[ƒ_+emissive
+float4	cMainPS_UVROT_emissive( cVertexData IN ) : COLOR //UVRotateç”¨ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€+emissive
 {
 	float4	nnormal		=	float4	(normalize (IN.Normal), 0.0);
 	float4	esnormal	=	mul (nnormal, view);
@@ -4462,7 +4462,7 @@ float4	cMainPS_UVROT_emissive( cVertexData IN ) : COLOR //UVRotate—pƒsƒNƒZƒ‹ƒVƒF
 	return	ColRate( float4( col.rgb, texcol.a ) + Emissive );
 }
 
-float4	cMainPS_UVFLS_emissive( cVertexData IN ) : COLOR //ƒeƒNƒXƒ`ƒƒ“_–Å—pƒsƒNƒZƒ‹ƒVƒF[ƒ_+emissive
+float4	cMainPS_UVFLS_emissive( cVertexData IN ) : COLOR //ãƒ†ã‚¯ã‚¹ãƒãƒ£ç‚¹æ»…ç”¨ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€+emissive
 {
 	float4	nnormal		=	float4	(normalize (IN.Normal), 0.0);
 	float4	esnormal	=	mul (nnormal, view);
@@ -4488,7 +4488,7 @@ float4	cMainPS_UVFLS_emissive( cVertexData IN ) : COLOR //ƒeƒNƒXƒ`ƒƒ“_–Å—pƒsƒNƒZ
 	return	ColRate( float4( col.rgb, FlashAlpha ) + Emissive );
 }
 
-float4	cMainWashOut_emissive( cVertexData IN ) : COLOR //‹tŒõƒnƒCƒ‰ƒCƒg‰—p—ÖŠs‚Ú‚©‚µ—pƒsƒNƒZƒ‹ƒVƒF[ƒ_+emissive
+float4	cMainWashOut_emissive( cVertexData IN ) : COLOR //é€†å…‰ãƒã‚¤ãƒ©ã‚¤ãƒˆå¿œç”¨è¼ªéƒ­ã¼ã‹ã—ç”¨ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€+emissive
 {
 	float4	viewNor		=	mul( IN.Normal, wv );
 	float	ldotn		=	dot( viewNor, float4(0,0,1,0) );
@@ -4514,7 +4514,7 @@ float4	cMainWashOut_emissive( cVertexData IN ) : COLOR //‹tŒõƒnƒCƒ‰ƒCƒg‰—p—ÖŠs‚
 	return	ColRate( float4( col.rgb, shadecol.a) + Emissive );
 }
 
-float4	cMainWashoutFlash_emissive( cVertexData IN ) : COLOR //‹tŒõƒnƒCƒ‰ƒCƒg‰—p—ÖŠs‚Ú‚©‚µƒeƒNƒXƒ`ƒƒ“_–Å—pƒsƒNƒZƒ‹ƒVƒF[ƒ_+emissive
+float4	cMainWashoutFlash_emissive( cVertexData IN ) : COLOR //é€†å…‰ãƒã‚¤ãƒ©ã‚¤ãƒˆå¿œç”¨è¼ªéƒ­ã¼ã‹ã—ãƒ†ã‚¯ã‚¹ãƒãƒ£ç‚¹æ»…ç”¨ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€+emissive
 {
 	float4	viewNor		=	mul( IN.Normal, wv );
 	float	ldotn		=	dot( viewNor, float4(0,0,1,0) );
@@ -4565,7 +4565,7 @@ float4	KATAHO_KAZAN_UVROT_emissive( cVertexData IN ) : COLOR
 	return	ColRate(lrp2 + Emissive);
 }
 
-float4	KATAHO_KAZAN_UVFLS_emissive( cVertexData IN ) : COLOR //ƒeƒNƒXƒ`ƒƒ“_–Å—pƒsƒNƒZƒ‹ƒVƒF[ƒ_
+float4	KATAHO_KAZAN_UVFLS_emissive( cVertexData IN ) : COLOR //ãƒ†ã‚¯ã‚¹ãƒãƒ£ç‚¹æ»…ç”¨ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€
 {
 	float4	t0			=	tex2D( ColorTex, IN.UV  );
 	float4	r0			=	pow(t0,4) + float4(-0.11, -0.11, -0.11, 1.0);
@@ -4579,7 +4579,7 @@ float4	KATAHO_KAZAN_UVFLS_emissive( cVertexData IN ) : COLOR //ƒeƒNƒXƒ`ƒƒ“_–Å—pƒ
 	return	ColRate( float4( lrp2.rgb, FlashAlpha )  + Emissive);
 }
 
-float4	WASHOUT_KATAHO_KAZAN_emissive( cVertexData IN ) : COLOR //‹tŒõƒnƒCƒ‰ƒCƒg‰—p—ÖŠs‚Ú‚©‚µ—pƒsƒNƒZƒ‹ƒVƒF[ƒ_
+float4	WASHOUT_KATAHO_KAZAN_emissive( cVertexData IN ) : COLOR //é€†å…‰ãƒã‚¤ãƒ©ã‚¤ãƒˆå¿œç”¨è¼ªéƒ­ã¼ã‹ã—ç”¨ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€
 {
 	float4	viewNor		=	mul( IN.Normal, wv );
 	float	L			=	dot( viewNor, float4(0,0,1,0) );
@@ -4597,7 +4597,7 @@ return	ColRate(float4( lrp2.rgb, lrp2.a * shadecol.a) + Emissive);
 
 }
 
-float4	WASHOUT_KATAHO_KAZAN_FLASH_emissive( cVertexData IN ) : COLOR //‹tŒõƒnƒCƒ‰ƒCƒg‰—p—ÖŠs‚Ú‚©‚µƒeƒNƒXƒ`ƒƒ“_–Å—pƒsƒNƒZƒ‹ƒVƒF[ƒ_
+float4	WASHOUT_KATAHO_KAZAN_FLASH_emissive( cVertexData IN ) : COLOR //é€†å…‰ãƒã‚¤ãƒ©ã‚¤ãƒˆå¿œç”¨è¼ªéƒ­ã¼ã‹ã—ãƒ†ã‚¯ã‚¹ãƒãƒ£ç‚¹æ»…ç”¨ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€
 {
 	float4	viewNor		=	mul( IN.Normal, wv );
 	float	L			=	dot( viewNor, float4(0,0,1,0) );
@@ -4617,7 +4617,7 @@ float4	WASHOUT_KATAHO_KAZAN_FLASH_emissive( cVertexData IN ) : COLOR //‹tŒõƒnƒCƒ
 
 }
 
-//ƒVƒF[ƒfƒBƒ“ƒOƒeƒNƒjƒbƒN
+//ã‚·ã‚§ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ãƒ†ã‚¯ãƒ‹ãƒƒã‚¯
 
 technique AllAmb_ShadowOff_InkOff_Emissive
 {
@@ -5034,17 +5034,17 @@ technique WASHOUT_KAZAN2_FLASH_Emissive
 }
 
 //-----------------------------------------------------------
-//	20100608	š’Ç‰Átechnique	emissive	‚±‚±‚Ü‚Å
+//	20100608	â˜…è¿½åŠ technique	emissive	ã“ã“ã¾ã§
 //-----------------------------------------------------------
 
 //------------------------------------------------------------------
-//	20101019	š’Ç‰Átechnique	Fur+KAZAN2+Emissive	‚±‚±‚©‚ç
+//	20101019	â˜…è¿½åŠ technique	Fur+KAZAN2+Emissive	ã“ã“ã‹ã‚‰
 //------------------------------------------------------------------
 
 float4	Fur_KAZAN2_Emissive_PS (cFurShaderData IN,uniform float	ratio): COLOR
 {
 
-//KAZAN2‚ÌƒJƒ‰[Œˆ‚ß•”•ª
+//KAZAN2ã®ã‚«ãƒ©ãƒ¼æ±ºã‚éƒ¨åˆ†
 	float4	t0			=	tex2D( ColorTex, IN.UV  );
 	float4	r0			=	pow(t0,4) + float4(-0.11, -0.11, -0.11, 1.0);
 	float4	lrp			=	r0 + KAZAN2COLOR * ( t0 - r0 );
@@ -5052,18 +5052,18 @@ float4	Fur_KAZAN2_Emissive_PS (cFurShaderData IN,uniform float	ratio): COLOR
 	float	r1			=	min (1.0, max( 0.0, (t1 + 0.75)));
 	float4	lrp2		=	float4(lrp.rgb, ((r1 - 0.75) * KAZAN2COLOR.a));
 
-//furshader‚ÌƒeƒNƒXƒ`ƒƒ‚Ìˆê•”
+//furshaderã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ä¸€éƒ¨
 	float4	furtex		=	tex2D( FurShadeTex, IN.UV * UVMag );
 
-//KAZAN2‚ÌƒJƒ‰[‚ğfurshader‚Æ“¯‚¶“à—e‚ÅF•t‚¯
+//KAZAN2ã®ã‚«ãƒ©ãƒ¼ã‚’furshaderã¨åŒã˜å†…å®¹ã§è‰²ä»˜ã‘
 	lrp2.rgb			*=	ratio + (1.0 - ratio) * FurDarkening;
 	float3	FurBrite	=	(1 - lrp2.rgb) * FurBritening.rgb;
 	lrp2.rgb			=	lrp2.rgb + (((ratio + 1) * (ratio - 0.5)) * FurBrite);
 
-//ƒAƒ‹ƒtƒ@ƒ`ƒƒƒ“ƒlƒ‹‚¾‚¯furshader‚Æ“¯‚¶‚­‚·‚é
+//ã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒ£ãƒ³ãƒãƒ«ã ã‘furshaderã¨åŒã˜ãã™ã‚‹
 	lrp2				*=	1 - (1 - furtex.a) * (ratio + 1);
 
-//o—Í
+//å‡ºåŠ›
 	return	ColRate(lrp2 + Emissive);
 
 }
@@ -5135,12 +5135,12 @@ technique ShadingFur_KAZAN2_Emissive
 		}
 }
 //------------------------------------------------------------------
-//	20101019	š’Ç‰Átechnique	Fur+KAZAN2+Emissive	‚±‚±‚Ü‚Å
+//	20101019	â˜…è¿½åŠ technique	Fur+KAZAN2+Emissive	ã“ã“ã¾ã§
 //------------------------------------------------------------------
 
 
 //------------------------------------------------------------------
-//	20101019	š’Ç‰Átechnique	Fur+KAZAN+Emissive	‚±‚±‚©‚ç
+//	20101019	â˜…è¿½åŠ technique	Fur+KAZAN+Emissive	ã“ã“ã‹ã‚‰
 //------------------------------------------------------------------
 
 float4	cShadingFurPSEmissive (cFurShaderData IN,uniform float	ratio): COLOR
@@ -5236,14 +5236,14 @@ technique ShadingFur_KAZAN_Emissive
 }
 
 //------------------------------------------------------------------
-//	20101019	š’Ç‰Átechnique	Fur+KAZAN+Emissive	‚±‚±‚Ü‚Å
+//	20101019	â˜…è¿½åŠ technique	Fur+KAZAN+Emissive	ã“ã“ã¾ã§
 //------------------------------------------------------------------
 
 //------------------------------------------------------------------
-//	20110119	š’Ç‰Átechnique	_eyedotn 	‚±‚±‚©‚ç
+//	20110119	â˜…è¿½åŠ technique	_eyedotn 	ã“ã“ã‹ã‚‰
 //------------------------------------------------------------------
 
-float4	cMainPS5( cVertexData IN ) : COLOR//ƒfƒtƒHƒ‹ƒgƒsƒNƒZƒ‹ƒVƒF[ƒ_
+float4	cMainPS5( cVertexData IN ) : COLOR//ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€
 {
 	float4	nnormal		=	float4	(normalize (IN.Normal), 0.0);
 	float4	esnormal	=	mul (nnormal, view);
@@ -5287,7 +5287,7 @@ float4	cMainPS5( cVertexData IN ) : COLOR//ƒfƒtƒHƒ‹ƒgƒsƒNƒZƒ‹ƒVƒF[ƒ_
 	return	ColRate( float4(col.rgb, alpha ) * ColorRate );
 }
 
-float4	cMainPS6( cVertexData IN ) : COLOR//ShadeTex“K—p”ÍˆÍ•ÏXƒsƒNƒZƒ‹ƒVƒF[ƒ_
+float4	cMainPS6( cVertexData IN ) : COLOR//ShadeTexé©ç”¨ç¯„å›²å¤‰æ›´ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€
 {
 	float4	nnormal		=	float4	(normalize (IN.Normal), 0.0);
 	float4	esnormal	=	mul (nnormal, view);
@@ -5358,14 +5358,14 @@ technique AllAmb_ShadowOn_eyedotn
 }
 
 //------------------------------------------------------------------
-//	20110119	š’Ç‰Átechnique	_eyedotn 	‚±‚±‚Ü‚Å
+//	20110119	â˜…è¿½åŠ technique	_eyedotn 	ã“ã“ã¾ã§
 //------------------------------------------------------------------
 
 //------------------------------------------------------------------
-//	20110515	š’Ç‰Átechnique	Šù‘¶•¡‡	‚±‚±‚©‚ç
+//	20110515	â˜…è¿½åŠ technique	æ—¢å­˜è¤‡åˆ	ã“ã“ã‹ã‚‰
 //------------------------------------------------------------------
 
-float4	cMainPS_UVROT_UVFLS( cVertexData IN ) : COLOR //ƒeƒNƒXƒ`ƒƒ“_–Å—pƒsƒNƒZƒ‹ƒVƒF[ƒ_
+float4	cMainPS_UVROT_UVFLS( cVertexData IN ) : COLOR //ãƒ†ã‚¯ã‚¹ãƒãƒ£ç‚¹æ»…ç”¨ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€
 {
 	float4	nnormal		=	float4	(normalize (IN.Normal), 0.0);
 	float4	esnormal	=	mul (nnormal, view);
@@ -5391,7 +5391,7 @@ float4	cMainPS_UVROT_UVFLS( cVertexData IN ) : COLOR //ƒeƒNƒXƒ`ƒƒ“_–Å—pƒsƒNƒZƒ‹ƒ
 	return	ColRate( float4( col.rgb, FlashAlpha ) * ColorRate );
 }
 
-float4	cMainPS_UVROT_UVFLS_emissive( cVertexData IN ) : COLOR //ƒeƒNƒXƒ`ƒƒ“_–Å—pƒsƒNƒZƒ‹ƒVƒF[ƒ_
+float4	cMainPS_UVROT_UVFLS_emissive( cVertexData IN ) : COLOR //ãƒ†ã‚¯ã‚¹ãƒãƒ£ç‚¹æ»…ç”¨ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€
 {
 	float4	nnormal		=	float4	(normalize (IN.Normal), 0.0);
 	float4	esnormal	=	mul (nnormal, view);
@@ -5417,7 +5417,7 @@ float4	cMainPS_UVROT_UVFLS_emissive( cVertexData IN ) : COLOR //ƒeƒNƒXƒ`ƒƒ“_–Å—p
 	return	ColRate( float4( col.rgb, FlashAlpha ) + Emissive );
 }
 
-float4	KATAHO_KAZAN_UVROT_UVFLS_emissive( cVertexData IN ) : COLOR //ƒeƒNƒXƒ`ƒƒ“_–Å—pƒsƒNƒZƒ‹ƒVƒF[ƒ_
+float4	KATAHO_KAZAN_UVROT_UVFLS_emissive( cVertexData IN ) : COLOR //ãƒ†ã‚¯ã‚¹ãƒãƒ£ç‚¹æ»…ç”¨ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€
 {
 	float4	t0			=	tex2D( ColorTex, IN.UV  );
 	float4	r0			=	pow(t0,4) + float4(-0.11, -0.11, -0.11, 1.0);
@@ -6021,11 +6021,11 @@ technique CLOCK_FLASH_KAZAN2_Emissive
 }
 
 //------------------------------------------------------------------
-//	20110515	š’Ç‰Átechnique	Šù‘¶•¡‡	‚±‚±‚Ü‚Å
+//	20110515	â˜…è¿½åŠ technique	æ—¢å­˜è¤‡åˆ	ã“ã“ã¾ã§
 //------------------------------------------------------------------
 
 //------------------------------------------------------------------
-//	20110805	š’Ç‰Átechnique	onlyhighlight	‚±‚±‚©‚ç
+//	20110805	â˜…è¿½åŠ technique	onlyhighlight	ã“ã“ã‹ã‚‰
 //------------------------------------------------------------------
 
 float4	onlyhighlightPS( cVertexData IN ) : COLOR
@@ -6137,11 +6137,11 @@ technique OnlyHighLight_HLC_Emissive
 }
 
 //------------------------------------------------------------------
-//	20110805	š’Ç‰Átechnique	onlyhighlight	‚±‚±‚Ü‚Å
+//	20110805	â˜…è¿½åŠ technique	onlyhighlight	ã“ã“ã¾ã§
 //------------------------------------------------------------------
 
 //------------------------------------------------------------------
-//	20120401	š’Ç‰Átechnique	ParaHUD	‚±‚±‚©‚ç
+//	20120401	â˜…è¿½åŠ technique	ParaHUD	ã“ã“ã‹ã‚‰
 //------------------------------------------------------------------
 
 void	calc_skindeform_ParaHUD( float4 ipos, float3 innor, float4	weights, int4 idxs, out float4	outpos, out float3 outnor )
@@ -6152,7 +6152,7 @@ void	calc_skindeform_ParaHUD( float4 ipos, float3 innor, float4	weights, int4 id
 	outnor				=	inor.xyz;
 }
 
-//Vertexshader	‚±‚±‚©‚ç
+//Vertexshader	ã“ã“ã‹ã‚‰
 
 cVertexData	cMainVS_ParaHUD( appdata IN )
 {
@@ -6196,7 +6196,7 @@ cVertexData	cMainVS_UVSCR_ParaHUD( appdata IN )
 	return	OUT;
 }
 
-cVertexData	cMainVS_UVSCR2_ParaHUD( appdata IN ) //’Ç‰Á XScroll
+cVertexData	cMainVS_UVSCR2_ParaHUD( appdata IN ) //è¿½åŠ  XScroll
 {
 	cVertexData	OUT;
 	float4	pos;
@@ -6217,7 +6217,7 @@ cVertexData	cMainVS_UVSCR2_ParaHUD( appdata IN ) //’Ç‰Á XScroll
 	return	OUT;
 }
 
-cVertexData	cMainVS_UVSCR3_ParaHUD( appdata IN ) //’Ç‰Á XRepeat
+cVertexData	cMainVS_UVSCR3_ParaHUD( appdata IN ) //è¿½åŠ  XRepeat
 {
 	cVertexData	OUT;
 	float4	pos;
@@ -6238,7 +6238,7 @@ cVertexData	cMainVS_UVSCR3_ParaHUD( appdata IN ) //’Ç‰Á XRepeat
 	return	OUT;
 }
 
-cVertexData	cMainVS_UVSCR4_ParaHUD( appdata IN ) //’Ç‰Á Bound
+cVertexData	cMainVS_UVSCR4_ParaHUD( appdata IN ) //è¿½åŠ  Bound
 {
 	cVertexData	OUT;
 	float4	pos;
@@ -6259,7 +6259,7 @@ cVertexData	cMainVS_UVSCR4_ParaHUD( appdata IN ) //’Ç‰Á Bound
 	return	OUT;
 }
 
-cVertexData	cMainVS_UVSCR5_ParaHUD( appdata IN ) //’Ç‰Á Circle
+cVertexData	cMainVS_UVSCR5_ParaHUD( appdata IN ) //è¿½åŠ  Circle
 {
 	cVertexData	OUT;
 
@@ -6281,7 +6281,7 @@ cVertexData	cMainVS_UVSCR5_ParaHUD( appdata IN ) //’Ç‰Á Circle
 	return	OUT;
 }
 
-cVertexData	cMainVS_UVSCR6_ParaHUD( appdata IN ) //’Ç‰Á Blanco
+cVertexData	cMainVS_UVSCR6_ParaHUD( appdata IN ) //è¿½åŠ  Blanco
 {
 	cVertexData	OUT;
 
@@ -6303,7 +6303,7 @@ cVertexData	cMainVS_UVSCR6_ParaHUD( appdata IN ) //’Ç‰Á Blanco
 	return	OUT;
 }
 
-cVertexData	cMainVS_UVSCR7_ParaHUD( appdata IN ) //’Ç‰Á Eight
+cVertexData	cMainVS_UVSCR7_ParaHUD( appdata IN ) //è¿½åŠ  Eight
 {
 	cVertexData	OUT;
 
@@ -6325,7 +6325,7 @@ cVertexData	cMainVS_UVSCR7_ParaHUD( appdata IN ) //’Ç‰Á Eight
 	return	OUT;
 }
 
-cVertexData	cMainVS_UVSCR8_ParaHUD( appdata IN ) //’Ç‰Á Wave
+cVertexData	cMainVS_UVSCR8_ParaHUD( appdata IN ) //è¿½åŠ  Wave
 {
 	cVertexData	OUT;
 
@@ -6347,7 +6347,7 @@ cVertexData	cMainVS_UVSCR8_ParaHUD( appdata IN ) //’Ç‰Á Wave
 	return	OUT;
 }
 
-cVertexData	cMainVS_UVSCR9_ParaHUD( appdata IN ) //’Ç‰Á XYScroll
+cVertexData	cMainVS_UVSCR9_ParaHUD( appdata IN ) //è¿½åŠ  XYScroll
 {
 	cVertexData	OUT;
 
@@ -6369,7 +6369,7 @@ cVertexData	cMainVS_UVSCR9_ParaHUD( appdata IN ) //’Ç‰Á XYScroll
 	return	OUT;
 }
 
-cVertexData	cMainVS_UVROT_ParaHUD( appdata IN ) //’Ç‰Á Rotate
+cVertexData	cMainVS_UVROT_ParaHUD( appdata IN ) //è¿½åŠ  Rotate
 {
 	cVertexData	OUT;
 
@@ -6395,7 +6395,7 @@ cVertexData	cMainVS_UVROT_ParaHUD( appdata IN ) //’Ç‰Á Rotate
 	return	OUT;
 }
 
-cVertexData	cMainVS_UVCLC_ParaHUD( appdata IN ) //’Ç‰Á Clock
+cVertexData	cMainVS_UVCLC_ParaHUD( appdata IN ) //è¿½åŠ  Clock
 {
 	cVertexData	OUT;	
 
@@ -6421,7 +6421,7 @@ cVertexData	cMainVS_UVCLC_ParaHUD( appdata IN ) //’Ç‰Á Clock
 	return	OUT;
 }
 
-cVertexData	cMainVS_UVRPL_ParaHUD( appdata IN ) //’Ç‰Á Ripple UV.x=((SQRT(UVSCR)*IN.UV.x)) UV.y=((SQRT(UVSCR)*IN.UV.y))
+cVertexData	cMainVS_UVRPL_ParaHUD( appdata IN ) //è¿½åŠ  Ripple UV.x=((SQRT(UVSCR)*IN.UV.x)) UV.y=((SQRT(UVSCR)*IN.UV.y))
 {
 	cVertexData	OUT;
 
@@ -6447,9 +6447,9 @@ cVertexData	cMainVS_UVRPL_ParaHUD( appdata IN ) //’Ç‰Á Ripple UV.x=((SQRT(UVSCR)
 	return	OUT;
 }
 
-//VertexShader	‚±‚±‚Ü‚Å
+//VertexShader	ã“ã“ã¾ã§
 
-//technique	‚±‚±‚©‚ç
+//technique	ã“ã“ã‹ã‚‰
 
 technique ParaHUD
 {
@@ -7232,19 +7232,19 @@ technique CLOCK_FLASH_KAZAN2_Emissive_ParaHUD
 	}
 }
 
-//technique	‚±‚±‚Ü‚Å
+//technique	ã“ã“ã¾ã§
 
 //------------------------------------------------------------------
-//	20120401	š’Ç‰Átechnique	ParaHUD	‚±‚±‚Ü‚Å
+//	20120401	â˜…è¿½åŠ technique	ParaHUD	ã“ã“ã¾ã§
 //------------------------------------------------------------------
 
 //------------------------------------------------------------------
-//	20120401	š’Ç‰Átechnique	AlphaScroll	‚±‚±‚©‚ç
+//	20120401	â˜…è¿½åŠ technique	AlphaScroll	ã“ã“ã‹ã‚‰
 //------------------------------------------------------------------
 
-//•Ï”w’è
+//å¤‰æ•°æŒ‡å®š
 
- //’Ç‰Á RGBƒ`ƒƒƒ“ƒlƒ‹ƒXƒNƒ[ƒ‹‘¬“x
+ //è¿½åŠ  RGBãƒãƒ£ãƒ³ãƒãƒ«ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«é€Ÿåº¦
 float	RGBScroll
 <
 	string UIName		=	"RGBScroll";
@@ -7254,7 +7254,7 @@ float	RGBScroll
 	float	UIStep		=	0.01;
 >						=	0.0;
 
- //’Ç‰Á ƒ¿ƒ`ƒƒƒ“ƒlƒ‹ƒXƒNƒ[ƒ‹‘¬“x
+ //è¿½åŠ  Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«é€Ÿåº¦
 float	AScroll
 <
 	string UIName		=	"AScroll";
@@ -7273,7 +7273,7 @@ struct cVertexDataUVa {
 	float3	Normal		:	TEXCOORD2;
 };
 
-cVertexDataUVa	cMainVS_UVSCR9_UVa( appdata IN ) //’Ç‰Á XYScroll
+cVertexDataUVa	cMainVS_UVSCR9_UVa( appdata IN ) //è¿½åŠ  XYScroll
 {
 	cVertexDataUVa	OUT;
 
@@ -7292,7 +7292,7 @@ cVertexDataUVa	cMainVS_UVSCR9_UVa( appdata IN ) //’Ç‰Á XYScroll
 
 //PixelShader
 
-float4	cMainPS_UVa( cVertexDataUVa IN ) : COLOR//RGB/A•ª—£UVScrollƒsƒNƒZƒ‹ƒVƒF[ƒ_
+float4	cMainPS_UVa( cVertexDataUVa IN ) : COLOR//RGB/Aåˆ†é›¢UVScrollãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€
 {
 	float4	nnormal		=	float4	(normalize (IN.Normal), 0.0);
 	float4	esnormal	=	mul (nnormal, view);
@@ -7318,7 +7318,7 @@ float4	cMainPS_UVa( cVertexDataUVa IN ) : COLOR//RGB/A•ª—£UVScrollƒsƒNƒZƒ‹ƒVƒF[
 	return	ColRate( float4(col.rgb, texalpha.a ) * ColorRate );
 }
 
-float4	cMainPS_UVa_emissive( cVertexDataUVa IN ) : COLOR//RGB/A•ª—£UVScrollƒsƒNƒZƒ‹ƒVƒF[ƒ_+emissive
+float4	cMainPS_UVa_emissive( cVertexDataUVa IN ) : COLOR//RGB/Aåˆ†é›¢UVScrollãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€+emissive
 {
 	float4	nnormal		=	float4	(normalize (IN.Normal), 0.0);
 	float4	esnormal	=	mul (nnormal, view);
@@ -7493,11 +7493,11 @@ technique XYSCROLL_NEGA_AlphaScroll_Emissive
 }
 
 //------------------------------------------------------------------
-//	20120401	š’Ç‰Átechnique AlphaScroll	‚±‚±‚Ü‚Å
+//	20120401	â˜…è¿½åŠ technique AlphaScroll	ã“ã“ã¾ã§
 //------------------------------------------------------------------
 
 //------------------------------------------------------------------
-//	20120425	šNATƒXƒNƒ[ƒ‹	‚±‚±‚©‚ç
+//	20120425	â˜…NATã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«	ã“ã“ã‹ã‚‰
 //------------------------------------------------------------------
 
 technique NAT_SCROLL
@@ -7725,11 +7725,11 @@ technique NAT_XYSCROLL_AlphaScroll_Emissive
 
 
 //------------------------------------------------------------------
-//	20120425	šNATƒXƒNƒ[ƒ‹‚±‚±‚Ü‚Å
+//	20120425	â˜…NATã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã“ã“ã¾ã§
 //------------------------------------------------------------------
 
 //------------------------------------------------------------------
-//	20120428	šRotateRepeat‚±‚±‚©‚ç
+//	20120428	â˜…RotateRepeatã“ã“ã‹ã‚‰
 //------------------------------------------------------------------
 
 technique ROTATERepeat
@@ -7925,9 +7925,9 @@ technique RotateRepeat_FLASH_KAZAN2_Emissive_ParaHUD
 }
 
 //------------------------------------------------------------------
-//	20120428	šRotateRepeat‚±‚±‚Ü‚Å
+//	20120428	â˜…RotateRepeatã“ã“ã¾ã§
 //------------------------------------------------------------------
-// —¼–Ê•`‰æŠÖ˜A
+// ä¸¡é¢æç”»é–¢é€£
 // Append by Konoa
 
 cVertexData2	cBackInkVS( appdata IN )
