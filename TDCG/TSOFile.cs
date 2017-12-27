@@ -498,7 +498,7 @@ namespace TDCG
 
         public override int GetHashCode()
         {
-            return position.GetHashCode() ^ normal.GetHashCode();
+            return position.GetHashCode() ^ normal.GetHashCode() ^ u.GetHashCode() ^ v.GetHashCode();
         }
 
         public override bool Equals(object obj)
@@ -506,7 +506,7 @@ namespace TDCG
             if (obj is Vertex)
             {
                 Vertex o = (Vertex)obj;
-                return position.Equals(o.position) && normal.Equals(o.normal);
+                return position.Equals(o.position) && normal.Equals(o.normal) && u == o.u && v == o.v;
             }
             return false;
         }
@@ -518,7 +518,7 @@ namespace TDCG
                 return false;
             }
 
-            return position.Equals(o.position) && normal.Equals(o.normal);
+            return position.Equals(o.position) && normal.Equals(o.normal) && u == o.u && v == o.v;
         }
 
         /// <summary>
