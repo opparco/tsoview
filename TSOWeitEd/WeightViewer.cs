@@ -62,6 +62,8 @@ public class WeightViewer : Viewer
         if (!base.InitializeApplication(control))
             return false;
 
+        control.MouseWheel += new MouseEventHandler(form_OnMouseWheel);
+
         sphere = Mesh.Sphere(device, 0.25f, 8, 4);
         dot_texture = TextureLoader.FromFile(device, GetDotBitmapPath());
         dotweit_texture = TextureLoader.FromFile(device, GetDotWeitBitmapPath());
@@ -998,24 +1000,30 @@ public class WeightViewer : Viewer
         switch (e.Button)
         {
         case MouseButtons.Left:
-            if (Control.ModifierKeys == Keys.Control)
-                SetLightDirection(ScreenToOrientation(e.X, e.Y));
-            else
-                Camera.Move(dx, -dy, 0.0f);
-            control.Invalidate(false);
             break;
         case MouseButtons.Middle:
             Camera.MoveView(-dx*0.125f, dy*0.125f);
             control.Invalidate(false);
             break;
         case MouseButtons.Right:
-            Camera.Move(0.0f, 0.0f, -dy*0.125f);
+            if (Control.ModifierKeys == Keys.Control)
+                SetLightDirection(ScreenToOrientation(e.X, e.Y));
+            else
+                Camera.Move(dx, -dy, 0.0f);
             control.Invalidate(false);
             break;
         }
 
         lastScreenPoint.X = e.X;
         lastScreenPoint.Y = e.Y;
+    }
+
+    protected void form_OnMouseWheel(object sender, MouseEventArgs e)
+    {
+        int dz = e.Delta;
+
+        Camera.Move(0.0f, 0.0f, -dz*0.125f);
+        control.Invalidate(false);
     }
 
     TSOFile selected_tso_file = null;
