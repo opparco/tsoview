@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="BMPSaveData.cs" />
     <Compile Include="Figure.cs" />
+    <Compile Include="Heap.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="IProportion.cs" />
     <Compile Include="Morphing.cs" />

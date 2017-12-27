@@ -92,6 +92,11 @@ namespace TDCG
         public VertexBuffer vb = null;
 
         /// <summary>
+        /// Direct3D索引バッファ
+        /// </summary>
+        public IndexBuffer ib = null;
+
+        /// <summary>
         /// パレット長さ
         /// </summary>
         public int maxPalettes;
@@ -220,6 +225,9 @@ namespace TDCG
                 VertexElement.VertexDeclarationEnd
         };
 
+        public Heap<Vertex> vh = new Heap<Vertex>();
+        public List<ushort> vindices = new List<ushort>();
+
         /// <summary>
         /// 頂点をDirect3Dバッファに書き込みます。
         /// </summary>
@@ -235,11 +243,63 @@ namespace TDCG
         /// <param name="device">device</param>
         public void WriteBuffer(Device device)
         {
+            if (ib != null)
+                ib.Dispose();
             if (vb != null)
                 vb.Dispose();
-            vb = new VertexBuffer(typeof(VertexFormat), vertices.Length, device, Usage.Dynamic | Usage.WriteOnly, VertexFormats.None, Pool.Default);
+
+            vindices.Clear();
+            vh.Clear();
+
+            {
+                int cnt = 0;
+                ushort a, b = 0, c = 0;
+                foreach (Vertex v in vertices)
+                {
+                    ushort i;
+                    if (vh.map.TryGetValue(v, out i))
+                    {
+                        //v = vh.ary[i];
+                    }
+                    else
+                    {
+                        i = (ushort)vh.Count;
+                        vh.Add(v);
+                    }
+
+                    // next tri.
+                    cnt++;
+                    a = b;
+                    b = c;
+                    c = i;
+
+                    if (cnt < 3)
+                        continue;
+
+                    if (a != b && b != c && c != a)
+                    {
+                        if (cnt % 2 == 0)
+                        {
+                            vindices.Add(b);
+                            vindices.Add(a);
+                            vindices.Add(c);
+                        }
+                        else
+                        {
+                            vindices.Add(a);
+                            vindices.Add(b);
+                            vindices.Add(c);
+                        }
+                    }
+                }
+            }
+            vb = new VertexBuffer(typeof(VertexFormat), vh.Count, device, Usage.Dynamic | Usage.WriteOnly, VertexFormats.None, Pool.Default);
             vb.Created += new EventHandler(vb_Created);
             vb_Created(vb, null);
+
+            ib = new IndexBuffer(typeof(ushort), vindices.Count, device, Usage.Dynamic | Usage.WriteOnly, Pool.Default);
+            ib.Created += new EventHandler(ib_Created);
+            ib_Created(ib, null);
         }
 
         void vb_Created(object sender, EventArgs e)
@@ -252,10 +312,8 @@ namespace TDCG
             {
                 GraphicsStream gs = vb.Lock(0, 0, LockFlags.None);
                 {
-                    for (int i = 0; i < vertices.Length; i++)
+                    foreach (Vertex v in vh.ary)
                     {
-                        Vertex v = vertices[i];
-
                         gs.Write(v.position);
                         for (int j = 0; j < 4; j++)
                             gs.Write(v.skin_weights[j].weight);
@@ -270,13 +328,38 @@ namespace TDCG
 
         }
 
+        void ib_Created(object sender, EventArgs e)
+        {
+            IndexBuffer ib = (IndexBuffer)sender;
+
+            //
+            // rewrite index buffer
+            //
+            {
+                GraphicsStream gs = ib.Lock(0, 0, LockFlags.None);
+                {
+                    foreach (ushort i in vindices)
+                    {
+                        gs.Write(i);
+                    }
+                }
+                ib.Unlock();
+            }
+
+        }
+
         /// <summary>
         /// Direct3Dバッファを破棄します。
         /// </summary>
         public void Dispose()
         {
+            if (ib != null)
+                ib.Dispose();
             if (vb != null)
                 vb.Dispose();
+
+            vindices.Clear();
+            vh.Clear();
         }
     }
 
@@ -412,6 +495,31 @@ namespace TDCG
 
         /// 選択中であるか
         public bool selected = false;
+
+        public override int GetHashCode()
+        {
+            return position.GetHashCode() ^ normal.GetHashCode();
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is Vertex)
+            {
+                Vertex o = (Vertex)obj;
+                return position.Equals(o.position) && normal.Equals(o.normal);
+            }
+            return false;
+        }
+
+        public bool Equals(Vertex o)
+        {
+            if ((object)o == null)
+            {
+                return false;
+            }
+
+            return position.Equals(o.position) && normal.Equals(o.normal);
+        }
 
         /// <summary>
         /// 頂点を読みとります。

@@ -552,7 +552,7 @@ cVertexData	cMainVS_WireCol( appdata IN )
 	OUT.Position		=	mul( pos, wvp );
 	OUT.UV				=	IN.UV;
 	OUT.Normal			=	normalize( mul( float4( nor.xyz, 0 ), wld ) );
-	OUT.ZTex			=	float4( 0, 0, 0, 1 );
+	OUT.ZTex			=	float4( 1, 1, 1, 1 );
 	return	OUT;
 }
 
