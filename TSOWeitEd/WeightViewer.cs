@@ -20,6 +20,7 @@ public class WeightViewer : Viewer
     internal Mesh sphere = null;
     internal Texture dot_texture = null;
     internal Texture dotweit_texture = null;
+    internal Texture rainbow_texture = null;
 
     /// <summary>
     /// effect handle for LocalBoneSels
@@ -52,6 +53,11 @@ public class WeightViewer : Viewer
         return Path.Combine(Application.StartupPath, @"dotweit.bmp");
     }
 
+    public static string GetRainbowBitmapPath()
+    {
+        return Path.Combine(Application.StartupPath, @"rainbow.png");
+    }
+
     /// <summary>
     /// deviceを作成します。
     /// </summary>
@@ -67,6 +73,7 @@ public class WeightViewer : Viewer
         sphere = Mesh.Sphere(device, 0.25f, 8, 4);
         dot_texture = TextureLoader.FromFile(device, GetDotBitmapPath());
         dotweit_texture = TextureLoader.FromFile(device, GetDotWeitBitmapPath());
+        rainbow_texture = TextureLoader.FromFile(device, GetRainbowBitmapPath());
         handle_LocalBoneSels = effect.GetParameter(null, "LocalBoneSels");
 
         return true;
@@ -289,6 +296,7 @@ public class WeightViewer : Viewer
 
         effect.Technique = "BoneCol";
         effect.SetValue("PenColor", new Vector4(1, 1, 1, 1));
+        effect.SetValue("RainbowTexture", rainbow_texture);
         effect.SetValue(handle_LocalBoneMats, fig.ClipBoneMatrices(sub_mesh));
         effect.SetValue(handle_LocalBoneSels, ClipBoneSelections(sub_mesh, selected_node));
 
@@ -1020,7 +1028,7 @@ public class WeightViewer : Viewer
 
     protected void form_OnMouseWheel(object sender, MouseEventArgs e)
     {
-        int dz = e.Delta;
+        int dz = e.Delta / 2;  // e.Delta == up: +120 down: -120
 
         Camera.Move(0.0f, 0.0f, -dz*0.125f);
         control.Invalidate(false);
@@ -1392,6 +1400,8 @@ public class WeightViewer : Viewer
             dot_texture.Dispose();
         if (dotweit_texture != null)
             dotweit_texture.Dispose();
+        if (rainbow_texture != null)
+            rainbow_texture.Dispose();
         if (sphere != null)
             sphere.Dispose();
         base.Dispose();

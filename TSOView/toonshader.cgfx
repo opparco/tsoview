@@ -194,6 +194,7 @@ texture	MojiTexture;
 
 //tsoview
 texture	texShadowMap;
+texture	RainbowTexture;
 
 sampler2D	ProjectiveMap;
 
@@ -252,6 +253,15 @@ sampler2D	ShadowTex	=	sampler_state
 	MagFilter			=	ANISOTROPIC;
 	MipFilter			=	ANISOTROPIC;
 	MAXANISOTROPY		=	16;
+};
+
+sampler2D	RainbowTex	=	sampler_state
+{
+	Texture				=	<RainbowTexture>;
+
+	MinFilter			=	LINEAR;
+	MagFilter			=	LINEAR;
+	MipFilter			=	LINEAR;
 };
 
 //------------------------------------------------------------------
@@ -365,14 +375,15 @@ void calc_skindeform_onorm( float3 innor, float4 weights, float4 idxs, out float
 //-----------------------------------------------------------
 
 //tsoview
-void calc_bonecol( float4 incol, float4 weights, int4 idxs, out float4 outcol )
+void calc_bonecol( float4 weights, int4 idxs, out float4 outcol )
 {
-	float4	ncol;
-	ncol				=	mul( incol, LocalBoneSels[idxs[0]] ) * weights[0];
-	ncol				+=	mul( incol, LocalBoneSels[idxs[1]] ) * weights[1];
-	ncol				+=	mul( incol, LocalBoneSels[idxs[2]] ) * weights[2];
-	ncol				+=	mul( incol, LocalBoneSels[idxs[3]] ) * weights[3];
-	outcol				=	float4( ncol.xyz, 1 );
+	float	w;
+	w				=	LocalBoneSels[idxs[0]] * weights[0];
+	w				+=	LocalBoneSels[idxs[1]] * weights[1];
+	w				+=	LocalBoneSels[idxs[2]] * weights[2];
+	w				+=	LocalBoneSels[idxs[3]] * weights[3];
+
+	outcol	=	float4( w, w, w, 1 );
 }
 
 //-----------------------------------------------------------
@@ -517,7 +528,7 @@ cVertexData	cMainVS_BoneCol( appdata IN )
 	float4	col;
 
 	calc_skindeform( float4( IN.Position.xyz, 1.0 ), IN.Normal, IN.VWeights, IN.BoneIdxs, pos, nor );
-	calc_bonecol( PenColor, IN.VWeights, IN.BoneIdxs, col );
+	calc_bonecol( IN.VWeights, IN.BoneIdxs, col );
 
 	OUT.Position		=	mul( pos, wvp );
 	OUT.UV				=	IN.UV;
@@ -845,7 +856,10 @@ float4	NormalMap_PS( cNormalMapData IN, float4 inUV : TEXCOORD0, float3 inLightT
 //tsoview
 float4	cMainPS_BoneCol( cVertexData IN ) : COLOR
 {
-	return	IN.ZTex;
+
+	float4	col	=	tex2D( RainbowTex, float2( IN.ZTex.x, 0.5 ) );
+
+	return	col;
 }
 
 //tsoview
