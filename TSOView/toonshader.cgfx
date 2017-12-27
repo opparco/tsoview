@@ -259,6 +259,9 @@ sampler2D	RainbowTex	=	sampler_state
 {
 	Texture				=	<RainbowTexture>;
 
+	AddressU			=	CLAMP;
+	AddressV			=	CLAMP;
+
 	MinFilter			=	LINEAR;
 	MagFilter			=	LINEAR;
 	MipFilter			=	LINEAR;
