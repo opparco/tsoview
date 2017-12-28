@@ -55,6 +55,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NormalizedMeshCommand.cs" />
     <Compile Include="PathFinder\GraphEdge.cs" />
     <Compile Include="PathFinder\GraphNode.cs" />
     <Compile Include="PathFinder\Graph_SearchDijkstra.cs" />
