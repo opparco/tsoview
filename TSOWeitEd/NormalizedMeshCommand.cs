@@ -51,14 +51,23 @@ namespace TDCG
             vertex.Update();
         }
 
-        public bool NormalizedWeight(MqoVert v)
+        public bool NormalizedWeight()
         {
-            return false;
+            float total_weit = 0;
 
-            // ウェイトの合計 == 1.0 であるか確認
-            // 1.0 であれば正規化の必要はない
+            foreach (MqoSkinWeight skin_weight in vertex.skin_weights)
+            {
+                total_weit += skin_weight.weight;
+            }
 
-            // ウェイトを合計値で割る
+            if (total_weit == 1.0f)
+                return false;
+
+            foreach (MqoSkinWeight skin_weight in vertex.skin_weights)
+            {
+                skin_weight.weight /= total_weit;
+            }
+            return true;
         }
 
         public bool Execute()
@@ -79,7 +88,7 @@ namespace TDCG
                 }
             }
 
-            bool updated = NormalizedWeight(vertex);
+            bool updated = NormalizedWeight();
 
             //処理後の値を記憶する。
             {
