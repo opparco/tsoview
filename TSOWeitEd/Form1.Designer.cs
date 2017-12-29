@@ -91,6 +91,7 @@
             this.lvMeshes = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnNormalized = new System.Windows.Forms.Button();
             this.btnSmooth = new System.Windows.Forms.Button();
             this.btnTarget = new System.Windows.Forms.Button();
             this.btnSource = new System.Windows.Forms.Button();
@@ -111,7 +112,6 @@
             this.btnGain = new System.Windows.Forms.Button();
             this.tbRadius = new System.Windows.Forms.TrackBar();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.btnNormalized = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbPower)).BeginInit();
@@ -628,12 +628,22 @@
             this.panel1.Size = new System.Drawing.Size(200, 711);
             this.panel1.TabIndex = 22;
             // 
+            // btnNormalized
+            // 
+            this.btnNormalized.Location = new System.Drawing.Point(14, 635);
+            this.btnNormalized.Name = "btnNormalized";
+            this.btnNormalized.Size = new System.Drawing.Size(84, 23);
+            this.btnNormalized.TabIndex = 19;
+            this.btnNormalized.Text = "正規化(&N)";
+            this.btnNormalized.UseVisualStyleBackColor = true;
+            this.btnNormalized.Click += new System.EventHandler(this.btnNormalized_Click);
+            // 
             // btnSmooth
             // 
-            this.btnSmooth.Location = new System.Drawing.Point(104, 635);
+            this.btnSmooth.Location = new System.Drawing.Point(104, 557);
             this.btnSmooth.Name = "btnSmooth";
             this.btnSmooth.Size = new System.Drawing.Size(84, 23);
-            this.btnSmooth.TabIndex = 19;
+            this.btnSmooth.TabIndex = 15;
             this.btnSmooth.Text = "補間(&S)";
             this.btnSmooth.UseVisualStyleBackColor = true;
             this.btnSmooth.Click += new System.EventHandler(this.btnSmooth_Click);
@@ -663,7 +673,7 @@
             this.edPower.Location = new System.Drawing.Point(104, 580);
             this.edPower.Name = "edPower";
             this.edPower.Size = new System.Drawing.Size(84, 19);
-            this.edPower.TabIndex = 16;
+            this.edPower.TabIndex = 17;
             this.edPower.Text = "1.000";
             this.edPower.TextChanged += new System.EventHandler(this.edPower_TextChanged);
             // 
@@ -672,7 +682,7 @@
             this.lbPower.Location = new System.Drawing.Point(14, 583);
             this.lbPower.Name = "lbPower";
             this.lbPower.Size = new System.Drawing.Size(84, 12);
-            this.lbPower.TabIndex = 15;
+            this.lbPower.TabIndex = 16;
             this.lbPower.Text = "減衰";
             // 
             // tbPower
@@ -682,7 +692,7 @@
             this.tbPower.Maximum = 40;
             this.tbPower.Name = "tbPower";
             this.tbPower.Size = new System.Drawing.Size(172, 24);
-            this.tbPower.TabIndex = 17;
+            this.tbPower.TabIndex = 18;
             this.tbPower.TickStyle = System.Windows.Forms.TickStyle.None;
             this.tbPower.Value = 20;
             this.tbPower.ValueChanged += new System.EventHandler(this.tbPower_ValueChanged);
@@ -815,16 +825,6 @@
             this.statusStrip1.Size = new System.Drawing.Size(1010, 22);
             this.statusStrip1.TabIndex = 23;
             this.statusStrip1.Text = "statusStrip1";
-            // 
-            // btnNormalized
-            // 
-            this.btnNormalized.Location = new System.Drawing.Point(14, 635);
-            this.btnNormalized.Name = "btnNormalized";
-            this.btnNormalized.Size = new System.Drawing.Size(84, 23);
-            this.btnNormalized.TabIndex = 18;
-            this.btnNormalized.Text = "正規化(&N)";
-            this.btnNormalized.UseVisualStyleBackColor = true;
-            this.btnNormalized.Click += new System.EventHandler(this.btnNormalized_Click);
             // 
             // Form1
             // 
