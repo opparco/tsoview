@@ -827,6 +827,17 @@ namespace TDCG
             }
         }
 
+        /// 選択ボーンに対応するウェイトを正規化します。
+        public void NormalizedSkinWeight()
+        {
+            if (SelectedMesh != null)
+            {
+                CalcSkindeform();
+                NormalizedMeshCommand mesh_command = new NormalizedMeshCommand(SelectedTSOFile, SelectedMesh);
+                Execute(mesh_command);
+            }
+        }
+
         /// 指定操作を実行します。
         public void Execute(ICommand command)
         {

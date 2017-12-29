@@ -67,6 +67,7 @@ namespace TDCG
             {
                 skin_weight.weight /= total_weit;
             }
+            //Console.WriteLine("normalized weit done. 1 - total weit:{0}", 1.0f - total_weit);
             return true;
         }
 

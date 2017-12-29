@@ -319,6 +319,14 @@ namespace TSOWeight
             Invalidate(false);
         }
 
+        private void btnNormalized_Click(object sender, EventArgs e)
+        {
+            viewer.NormalizedSkinWeight();
+            viewer.NeedSkindeform = true;
+            AssignSkinWeights(viewer.SelectedVertex);
+            Invalidate(false);
+        }
+
         private void SaveFigure()
         {
             if (lvTSOFiles.SelectedIndices.Count == 0)
