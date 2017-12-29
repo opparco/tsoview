@@ -53,22 +53,16 @@ namespace TDCG
 
         public bool NormalizedWeight()
         {
-            float total_weit = 0;
-
+            bool updated = false;
             foreach (MqoSkinWeight skin_weight in vertex.skin_weights)
             {
-                total_weit += skin_weight.weight;
+                if (skin_weight.weight != skin_weight.normalized_weight)
+                {
+                    updated = true;
+                    skin_weight.weight = skin_weight.normalized_weight;
+                }
             }
-
-            if (total_weit == 1.0f)
-                return false;
-
-            foreach (MqoSkinWeight skin_weight in vertex.skin_weights)
-            {
-                skin_weight.weight /= total_weit;
-            }
-            //Console.WriteLine("normalized weit done. 1 - total weit:{0}", 1.0f - total_weit);
-            return true;
+            return updated;
         }
 
         public bool Execute()

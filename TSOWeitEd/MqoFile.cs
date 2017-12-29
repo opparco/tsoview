@@ -228,7 +228,7 @@ namespace TDCG
             for (int i = 0; i < 4; i++)
             {
                 Matrix m = bone_matrices[skin_weights[i].bone.Id];
-                float w = skin_weights[i].weight;
+                float w = skin_weights[i].normalized_weight;
                 pos += Vector3.TransformCoordinate(position, m) * w;
             }
             return pos;
@@ -243,7 +243,7 @@ namespace TDCG
                 m.M41 = 0;
                 m.M42 = 0;
                 m.M43 = 0;
-                float w = skin_weights[i].weight;
+                float w = skin_weights[i].normalized_weight;
                 nor += Vector3.TransformCoordinate(normal, m) * w;
             }
             return nor;
@@ -255,6 +255,15 @@ namespace TDCG
         {
             foreach (TSOPair p in rel)
             {
+                float total_weit = 0.0f;
+                for (int i = 0; i < 4; i++)
+                {
+                    total_weit += skin_weights[i].weight;
+                }
+                for (int i = 0; i < 4; i++)
+                {
+                    skin_weights[i].normalized_weight = skin_weights[i].weight / total_weit;
+                }
                 for (int i = 0; i < 4; i++)
                 {
                     if (skin_weights[i].weight < WeightEpsilon)
@@ -268,7 +277,7 @@ namespace TDCG
                         if (bone_idx == -1)
                             bone_idx = p.sub_mesh.AddBone(bone);
                         if (bone_idx != -1)
-                            p.a.skin_weights[i] = new SkinWeight(bone_idx, skin_weights[i].weight);
+                            p.a.skin_weights[i] = new SkinWeight(bone_idx, skin_weights[i].normalized_weight);
                     }
                 }
                 p.a.FillSkinWeights();
@@ -292,10 +301,16 @@ namespace TDCG
         /// </summary>
         public float weight;
 
+        /// <summary>
+        /// 正規化済みウェイト
+        /// </summary>
+        public float normalized_weight;
+
         public MqoSkinWeight(TSONode bone, float weight)
         {
             this.bone = bone;
             this.weight = weight;
+            this.normalized_weight = weight;
         }
 
         /// <summary>

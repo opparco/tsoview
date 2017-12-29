@@ -261,25 +261,7 @@ namespace TDCG
                 if (w1 > 1.0f) w1 = 1.0f;
                 if (w1 < 0.0f) w1 = 0.0f;
 
-                float d1 = w1 - w0; //実際の加算値
-                float m1 = 0.0f;    //減算後の残りウェイト値
-                if (m0 != 0)
-                {
-                    //残りウェイトを減算する。
-                    foreach (MqoSkinWeight skin_weight in vertex.skin_weights)
-                    {
-                        if (skin_weight == selected_skin_weight)
-                            continue;
-
-                        float w2 = skin_weight.weight - skin_weight.weight * d1 / m0;
-                        if (w2 < 0.001f)
-                            w2 = 0.0f;//微小ウェイトは捨てる。
-
-                        skin_weight.weight = w2;
-                        m1 += w2;
-                    }
-                }
-                selected_skin_weight.weight = 1.0f - m1;
+                selected_skin_weight.weight = w1;
 
                 Array.Sort(vertex.skin_weights);
             }

@@ -827,7 +827,7 @@ namespace TDCG
             }
         }
 
-        /// 選択ボーンに対応するウェイトを正規化します。
+        /// ウェイトを正規化します。
         public void NormalizedSkinWeight()
         {
             if (SelectedMesh != null)
