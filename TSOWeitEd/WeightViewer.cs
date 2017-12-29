@@ -1014,16 +1014,17 @@ namespace TDCG
             switch (e.Button)
             {
                 case MouseButtons.Left:
-                    if (Control.ModifierKeys == Keys.Control)
-                    {
-                        SetLightDirection(ScreenToOrientation(e.X, e.Y));
-                        control.Invalidate(false);
-                    }
-                    else
-                        if (!MotionEnabled)
+                    if (!MotionEnabled)
                     {
                         if (!SelectVertex())
                             SelectNode();
+                        control.Invalidate(false);
+                    }
+                    break;
+                case MouseButtons.Right:
+                    if (Control.ModifierKeys == Keys.Control)
+                    {
+                        SetLightDirection(ScreenToOrientation(e.X, e.Y));
                         control.Invalidate(false);
                     }
                     break;
