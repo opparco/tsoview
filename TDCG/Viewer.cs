@@ -1048,6 +1048,7 @@ namespace TDCG
                         {
                             //device.RenderState.VertexBlend = (VertexBlend)(4 - 1);
                             device.SetStreamSource(0, sub_mesh.vb, 0, 52);
+                            device.Indices = sub_mesh.ib;
 
                             //tso.SwitchShader(sub_mesh);
                             effect.SetValue(handle_LocalBoneMats, fig.ClipBoneMatrices(sub_mesh));
@@ -1056,7 +1057,7 @@ namespace TDCG
                             for (int ipass = 0; ipass < npass; ipass++)
                             {
                                 effect.BeginPass(ipass);
-                                device.DrawPrimitives(PrimitiveType.TriangleStrip, 0, sub_mesh.vertices.Length - 2);
+                                device.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0, sub_mesh.vh.Count, 0, sub_mesh.vindices.Count / 3);
                                 effect.EndPass();
                             }
                             effect.End();
@@ -1114,6 +1115,7 @@ namespace TDCG
                         {
                             //device.RenderState.VertexBlend = (VertexBlend)(4 - 1);
                             device.SetStreamSource(0, sub_mesh.vb, 0, 52);
+                            device.Indices = sub_mesh.ib;
 
                             tso.SwitchShader(sub_mesh);
                             effect.SetValue(handle_LocalBoneMats, fig.ClipBoneMatrices(sub_mesh));
@@ -1122,7 +1124,7 @@ namespace TDCG
                             for (int ipass = 0; ipass < npass; ipass++)
                             {
                                 effect.BeginPass(ipass);
-                                device.DrawPrimitives(PrimitiveType.TriangleStrip, 0, sub_mesh.vertices.Length - 2);
+                                device.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0, sub_mesh.vh.Count, 0, sub_mesh.vindices.Count / 3);
                                 effect.EndPass();
                             }
                             effect.End();
